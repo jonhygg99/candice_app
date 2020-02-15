@@ -37,6 +37,7 @@ class _HomeState extends State<Home> {
             this.index = index;
           });
         },
+        type: BottomNavigationBarType.fixed,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         backgroundColor: Colors.black,

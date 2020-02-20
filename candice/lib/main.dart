@@ -1,4 +1,8 @@
+import 'package:candice/screens/add_post/index.dart';
+import 'package:candice/screens/home/index.dart';
+import 'package:candice/screens/notifications/index.dart';
 import 'package:candice/screens/profile/index.dart';
+import 'package:candice/screens/search/index.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(App());
@@ -10,26 +14,35 @@ class App extends StatelessWidget {
       title: 'My Flutter App',
       initialRoute: '/',
       routes: {
-        '/': (context) => Home(),
-        '/home': (context) => Home(),
+        '/': (context) => NavigationBar(),
+        '/home': (context) => NavigationBar(),
         '/profile': (context) => Profile(),
       },
     );
   }
 }
 
-class Home extends StatefulWidget {
+class NavigationBar extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _HomeState();
+    return _NavigationBarState();
   }
 }
 
-class _HomeState extends State<Home> {
-  int index = 0;
+class _NavigationBarState extends State<NavigationBar> {
+  int index = 4;
+  final List<Widget> screens = [
+    Home(),
+    Search(),
+    AddPost(),
+    Notifications(),
+    Profile()
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: screens[index],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: index,
         onTap: (int index) {
@@ -61,7 +74,7 @@ class _HomeState extends State<Home> {
               Icons.add_circle,
               color: index == 2 ? Colors.pinkAccent : Colors.white,
             ),
-            title: new Text('Add'),
+            title: new Text('Add post'),
           ),
           new BottomNavigationBarItem(
             icon: new Icon(

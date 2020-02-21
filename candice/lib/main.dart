@@ -12,12 +12,8 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'My Flutter App',
-      initialRoute: '/',
-      routes: {
-        '/': (context) => NavigationBar(),
-        '/home': (context) => NavigationBar(),
-        '/profile': (context) => Profile(),
-      },
+      home: NavigationBar(),
+      theme: ThemeData(fontFamily: 'Roboto'),
     );
   }
 }

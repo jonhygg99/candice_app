@@ -13,11 +13,16 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   bool isFollowing = true;
 
+  Future<Null> _refreshProfile() async {}
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Container(
-        child: Column(
+      child: RefreshIndicator(
+        onRefresh: _refreshProfile, // TODO: call to fetch the profile
+        child: ListView(
+          physics:
+              const AlwaysScrollableScrollPhysics(), // TODO: when it goes up the backgroundImage resized and goes with a higher height
           children: <Widget>[
             Stack(alignment: Alignment(0, 5.4), children: <Widget>[
               ProfileBackgroundImage(
@@ -33,7 +38,7 @@ class _ProfileState extends State<Profile> {
                       'I’m a musician who loves Pop and Rock. 🤘 Currently studying for being a lawyer, but what I truly want is to sing in the shower.',
                   isFollowing: isFollowing)
             ]),
-            const SizedBox(height: kCommonSeparation),
+            const SizedBox(height: 160),
             StatisticsBubble(
                 uploads: 36, reproductions: 2000000, hearts: 128000),
             const SizedBox(height: kCommonSeparation),

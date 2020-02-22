@@ -25,27 +25,37 @@ class _ProfileState extends State<Profile> {
               const AlwaysScrollableScrollPhysics(), // TODO: when it goes up the backgroundImage resized and goes with a higher height
           children: <Widget>[
             Stack(alignment: Alignment(0, 5.4), children: <Widget>[
-              ProfileBackgroundImage(
-                backgroundImage:
-                    'https://images.unsplash.com/photo-1580331451062-99ff652288d7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80',
+              Positioned(
+                top: 0,
+                child: ProfileBackgroundImage(
+                  backgroundImage:
+                      'https://images.unsplash.com/photo-1580331451062-99ff652288d7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80',
+                ),
               ),
-              ProfileMainBubble(
-                  name: 'Laia Montés',
-                  photoProfile:
-                      'https://images.unsplash.com/photo-1578680671705-0965e325b2ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1233&q=80',
-                  profession: 'Singer and Guitarrist',
-                  description:
-                      'I’m a musician who loves Pop and Rock. 🤘 Currently studying for being a lawyer, but what I truly want is to sing in the shower.',
-                  isFollowing: isFollowing)
+              Column(
+                children: <Widget>[
+                  const SizedBox(
+                      height: kBackgroundImageHeight / 2 +
+                          kBackgroundImageHeight / 5),
+                  ProfileMainBubble(
+                      name: 'Laia Montés',
+                      photoProfile:
+                          'https://images.unsplash.com/photo-1578680671705-0965e325b2ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1233&q=80',
+                      profession: 'Singer and Guitarrist',
+                      description:
+                          'I’m a musician who loves Pop and Rock. 🤘 Currently studying for being a lawyer, but what I truly want is to sing in the shower.',
+                      isFollowing: isFollowing),
+                  const SizedBox(height: kCommonSeparation),
+                  StatisticsBubble(
+                      uploads: 36, reproductions: 2000000, hearts: 128000),
+                  const SizedBox(height: kCommonSeparation),
+                  ProfileContributeBubble(
+                    contributeDescription:
+                        'Small steps every day will bring what I truly want! 😇',
+                  )
+                ],
+              )
             ]),
-            const SizedBox(height: 160),
-            StatisticsBubble(
-                uploads: 36, reproductions: 2000000, hearts: 128000),
-            const SizedBox(height: kCommonSeparation),
-            ProfileContributeBubble(
-              contributeDescription:
-                  'Small steps every day will bring what I truly want! 😇',
-            )
           ],
         ),
       ),
@@ -121,7 +131,7 @@ class ProfileBackgroundImage extends StatelessWidget {
       child: FittedBox(
         child: Image.network(backgroundImage,
             fit: BoxFit.fitWidth,
-            height: 350,
+            height: kBackgroundImageHeight,
             width: MediaQuery.of(context).size.width),
       ),
     );

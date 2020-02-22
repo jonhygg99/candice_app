@@ -12,3 +12,6 @@ BorderRadius kBorderRadiusCircular = BorderRadius.circular(kRadius);
 const EdgeInsets kPaddingCard = EdgeInsets.symmetric(
     horizontal: kBigSeparation, vertical: kCommonSeparation);
 const kMarginCard = EdgeInsets.symmetric(horizontal: kMediumSeparation);
+
+// Profile
+const double kBackgroundImageHeight = 350.0;

@@ -3,7 +3,11 @@ import 'package:candice/constants/measures.dart';
 import 'package:candice/constants/texts.dart';
 import 'package:candice/constants/typography.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+
+import 'backgroundImage.dart';
+import 'contributeBubble.dart';
+import 'mainBubble.dart';
+import 'statisticsBubble.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -24,20 +28,26 @@ class _ProfileState extends State<Profile> {
           physics:
               const AlwaysScrollableScrollPhysics(), // TODO: when it goes up the backgroundImage resized and goes with a higher height
           children: <Widget>[
-            Stack(alignment: Alignment(0, 5.4), children: <Widget>[
+            Stack(children: <Widget>[
               Positioned(
                 top: 0,
-                child: ProfileBackgroundImage(
-                  backgroundImage:
-                      'https://images.unsplash.com/photo-1580331451062-99ff652288d7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80',
-                ),
+                child: BackgroundImage(
+                    backgroundImage:
+                        'https://images.unsplash.com/photo-1580331451062-99ff652288d7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80',
+                    height: kBackgroundImageHeight),
               ),
+              Positioned(
+                  top: 0,
+                  right: 5,
+                  child: IconButton(
+                      icon: Icon(Icons.more_vert, color: Colors.white),
+                      onPressed: () {})),
               Column(
                 children: <Widget>[
                   const SizedBox(
                       height: kBackgroundImageHeight / 2 +
                           kBackgroundImageHeight / 5),
-                  ProfileMainBubble(
+                  MainBubble(
                       name: 'Laia Montés',
                       photoProfile:
                           'https://images.unsplash.com/photo-1578680671705-0965e325b2ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1233&q=80',
@@ -49,10 +59,14 @@ class _ProfileState extends State<Profile> {
                   StatisticsBubble(
                       uploads: 36, reproductions: 2000000, hearts: 128000),
                   const SizedBox(height: kCommonSeparation),
-                  ProfileContributeBubble(
+                  ContributeBubble(
                     contributeDescription:
                         'Small steps every day will bring what I truly want! 😇',
-                  )
+                  ),
+                  const SizedBox(height: kHugeSeparation),
+                  TabBarNavigation(),
+//                  TabBarView(children: [Text("1"), Text('2')]),
+                  const SizedBox(height: kCommonSeparation),
                 ],
               )
             ]),
@@ -63,118 +77,45 @@ class _ProfileState extends State<Profile> {
   }
 }
 
-class ProfileContributeBubble extends StatelessWidget {
-  ProfileContributeBubble({this.contributeDescription});
-  final String contributeDescription;
+class TabBarNavigation extends StatelessWidget {
+  final List<Tab> myTabs = <Tab>[Tab(text: kArtwork), Tab(text: kPastJobs)];
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: kMarginCard,
-      shape: RoundedRectangleBorder(
-        borderRadius: kBorderRadiusCircular,
-      ),
-      elevation: kElevation,
+    return DefaultTabController(
+      length: 2,
+      initialIndex: 0,
       child: Padding(
-        padding: kPaddingCard,
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                contributeDescription,
-                style: const TextStyle(fontSize: 18.0),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: kMediumSeparation),
-              RaisedButton(
-                elevation:
-                    kElevation, // TODO: Is a Square elevation and should be with the button
-                onPressed: () {},
-                color: Colors.transparent,
-                textColor: Colors.white,
-                padding: const EdgeInsets.all(0.0),
-                child: Container(
-                  width: 220,
-                  child: Center(
-                    child: const Text('Contribute',
-                        style: const TextStyle(
-                            fontSize: 18,
-                            fontFamily: 'Roboto-Bold',
-                            fontWeight: FontWeight.bold)),
-                  ),
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                    gradient: const LinearGradient(
-                      colors: <Color>[kYellowGradient, kPinkGradient],
-                    ),
-                  ),
-                  padding: const EdgeInsets.all(8.0),
-                ),
-              ),
-            ]),
-      ),
-    );
-  }
-}
-
-class ProfileBackgroundImage extends StatelessWidget {
-  ProfileBackgroundImage({this.backgroundImage});
-  final String backgroundImage;
-
-  @override
-  Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.only(
-        bottomLeft: kRadiusCircular,
-        bottomRight: kRadiusCircular,
-      ),
-      child: FittedBox(
-        child: Image.network(backgroundImage,
-            fit: BoxFit.fitWidth,
-            height: kBackgroundImageHeight,
-            width: MediaQuery.of(context).size.width),
-      ),
-    );
-  }
-}
-
-class StatisticsBubble extends StatelessWidget {
-  StatisticsBubble({this.uploads, this.reproductions, this.hearts});
-  final int uploads;
-  final int reproductions;
-  final int hearts;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      margin: kMarginCard,
-      clipBehavior: Clip.hardEdge,
-      shape: RoundedRectangleBorder(
-        borderRadius: kBorderRadiusCircular,
-      ),
-      elevation: kElevation,
-      child: Padding(
-        padding: kPaddingCard,
+        padding: kPaddingTabBar,
         child: Column(
           children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                ProfileStatistics(number: uploads, title: kUploads),
-                const SizedBox(width: kBigSeparation),
-                ProfileStatistics(number: reproductions, title: kReproductions),
-                const SizedBox(width: kBigSeparation),
-                ProfileStatistics(number: hearts, title: kHearts),
-              ],
+            Container(
+              padding: EdgeInsets.all(5.0),
+              decoration: BoxDecoration(
+                color: kLightGrey,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(50),
+                ),
+              ),
+              child: TabBar(
+//            controller: TabController(length: 2, vsync: this),
+                tabs: myTabs,
+                unselectedLabelColor: Colors.black54,
+                labelColor: Colors.black,
+                unselectedLabelStyle: kBoldText,
+                labelStyle: kBoldText,
+                indicatorSize: TabBarIndicatorSize.tab,
+                indicator: BoxDecoration(
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.circular(50),
+                  color: Colors.white,
+                ),
+              ),
             ),
             const SizedBox(height: kCommonSeparation),
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-              SocialBubbles(
-                icon: Icons.public,
-                color: Colors.black,
-                action: () {},
-              )
-            ]),
+            SizedBox(
+                height: 500,
+                child: TabBarView(children: [ArtworkTab(), Text('2')])),
           ],
         ),
       ),
@@ -182,173 +123,83 @@ class StatisticsBubble extends StatelessWidget {
   }
 }
 
-class SocialBubbles extends StatelessWidget {
-  SocialBubbles({this.icon, this.color, this.action});
-  final IconData icon;
-  final Color color;
-  final Function action;
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      elevation: kElevation,
-      shape: CircleBorder(),
-      child: InkWell(
-        onTap: action,
-        customBorder: CircleBorder(),
-        child: IconButton(
-          icon: Icon(
-            icon,
-            color: color,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class ProfileStatistics extends StatelessWidget {
-  ProfileStatistics({this.number, this.title});
-  final int number;
-  final String title;
-
-  String numberFormat(int nb) {
-    return NumberFormat.compact().format(nb);
-  }
-
+class ArtworkTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Text(
-          numberFormat(number),
-          style: TextStyle(
-            fontSize: 18.0,
-            fontWeight: FontWeight.bold,
-          ),
+        Row(
+          children: <Widget>[
+            PostPreview(
+              backgroundImage:
+                  'https://images.unsplash.com/photo-1581289098325-fd41f57a9d4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1601&q=80',
+              postTitle: 'Break my soul',
+            ),
+            const SizedBox(width: kSmallSeparation),
+            PostPreview(
+              backgroundImage:
+                  'https://images.unsplash.com/photo-1581289098325-fd41f57a9d4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1601&q=80',
+              postTitle: 'Break my soul',
+            ),
+          ],
         ),
-        const SizedBox(height: 2.0),
-        Text(
-          title,
-          style: TextStyle(fontSize: 14.0),
-        )
+        const SizedBox(height: kSmallSeparation),
+        Row(
+          children: <Widget>[
+            PostPreview(
+              backgroundImage:
+                  'https://images.unsplash.com/photo-1581289098325-fd41f57a9d4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1601&q=80',
+              postTitle: 'Break my soul',
+            ),
+            const SizedBox(width: kSmallSeparation),
+            PostPreview(
+              backgroundImage:
+                  'https://images.unsplash.com/photo-1581289098325-fd41f57a9d4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1601&q=80',
+              postTitle: 'Break my soul',
+            ),
+          ],
+        ),
       ],
     );
   }
 }
 
-class ProfileMainBubble extends StatelessWidget {
-  ProfileMainBubble(
-      {this.name,
-      this.photoProfile,
-      this.profession,
-      this.description,
-      this.isFollowing});
-  final String name;
-  final String photoProfile;
-  final String profession;
-  final String description;
-  final bool isFollowing;
+class PostPreview extends StatelessWidget {
+//  const PostPreview({
+//    Key key,
+//  }) : super(key: key);
+  PostPreview({this.backgroundImage, this.postTitle});
+  final String backgroundImage;
+  final String postTitle;
+  // TODO: Audio/Video
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: kMarginCard,
-      clipBehavior: Clip.hardEdge,
-      shape: RoundedRectangleBorder(
-        borderRadius: kBorderRadiusCircular,
-      ),
-      elevation: kElevation,
-      child: Padding(
-        padding: kPaddingCard,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                CircleAvatar(
-                  backgroundImage: NetworkImage(photoProfile),
-                  radius: 40.0,
-                  backgroundColor: kDefaultColorLoading,
-                ),
-                const SizedBox(width: kCommonSeparation),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      name,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 32.0),
-                    ),
-                    const SizedBox(height: kSmallSeparation),
-                    Text(
-                      profession,
-                      style: const TextStyle(
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black54,
-                          fontFamily: kRobotoBold),
-                    ),
-                  ],
-                )
-              ],
-            ),
-            const SizedBox(height: kMediumSeparation),
-            Text(
-              description,
-              style: const TextStyle(fontSize: 16.0),
-            ),
-            const SizedBox(height: kBigSeparation),
-            Row(
-              children: <Widget>[
-                ActionButton(
-                    title: kPlaySongs,
-                    color: kLightBlue,
-                    action: () {},
-                    format: false),
-                const SizedBox(width: kCommonSeparation),
-                ActionButton(
-                  title: isFollowing ? kImFan : kBeFan,
-                  color: kPink,
-                  format: !isFollowing,
-                  action: () {},
-                ),
-              ],
-            )
-          ],
+    return Stack(
+      children: <Widget>[
+        BackgroundImage(
+            backgroundImage: backgroundImage,
+            height: kPostPreviewBackgroundImageHeight),
+        Positioned(
+          bottom: 12,
+          left: 12,
+          child: Text(postTitle, style: kWhiteBoldText),
         ),
-      ),
-    );
-  }
-}
-
-class ActionButton extends StatelessWidget {
-  ActionButton({this.title, this.color, this.action, this.format});
-  final String title;
-  final Color color;
-  final Function action;
-  final bool format;
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: RaisedButton(
-        child: Text(
-          title,
-          style: TextStyle(
-              color: format ? color : Colors.white,
-              fontSize: 18.0,
-              fontWeight: FontWeight.bold),
+        Positioned(
+          top: kPostPreviewBackgroundImageHeight / 4,
+          left: MediaQuery.of(context).size.width / 6 - kSmallSeparation,
+          child: Opacity(
+            opacity: 0.75,
+            child: IconButton(
+              icon: Icon(
+                  Icons.play_circle_filled /*: Icons.pause_circle_filled */),
+              iconSize: 70,
+              color: Colors.white,
+              onPressed: () {},
+            ),
+          ),
         ),
-        onPressed: action,
-        color: format ? Colors.white : color,
-        elevation: kElevation,
-        padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
-        shape: RoundedRectangleBorder(
-            borderRadius: kBorderRadiusCircular,
-            side: BorderSide(color: color, width: 4)),
-      ),
+      ],
     );
   }
 }

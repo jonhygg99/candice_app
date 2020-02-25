@@ -1,5 +1,6 @@
 import 'package:candice/constants/measures.dart';
 import 'package:candice/constants/texts.dart';
+import 'package:candice/screens/profile/socialMediaBubbles.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -8,6 +9,12 @@ class StatisticsBubble extends StatelessWidget {
   final int uploads;
   final int reproductions;
   final int hearts;
+  final Map<String, String> socialMedia = {
+    kWeb: 'http://candice-music.com',
+    kYouTube: 'https://www.youtube.com/watch?v=WW7K3WWin_8',
+    kInstagram: 'https://www.instagram.com/candicemusicoff/',
+    kSpotify: 'https://open.spotify.com/artist/1rHf7vRCsDRBkbA1XGT9e1'
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -33,42 +40,34 @@ class StatisticsBubble extends StatelessWidget {
               ],
             ),
             const SizedBox(height: kCommonSeparation),
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-              SocialBubbles(
-                icon: Icons.public,
-                color: Colors.black,
-                action: () {},
-              )
-            ]),
+            socialMedia.isNotEmpty
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: _buildSocialMediaList(),
+                  )
+                : SizedBox(height: 0.0),
           ],
         ),
       ),
     );
   }
-}
 
-class SocialBubbles extends StatelessWidget {
-  SocialBubbles({this.icon, this.color, this.action});
-  final IconData icon;
-  final Color color;
-  final Function action;
+  List<Widget> _buildSocialMediaList() {
+    List<Widget> widgets = [];
+    int i = 0;
 
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      elevation: kElevation,
-      shape: CircleBorder(),
-      child: InkWell(
-        onTap: action,
-        customBorder: CircleBorder(),
-        child: IconButton(
-          icon: Icon(
-            icon,
-            color: color,
-          ),
+    socialMedia.forEach((name, url) {
+      ++i;
+      widgets.add(
+        SocialMediaBubbles(
+          name: name,
+          url: url,
         ),
-      ),
-    );
+      );
+      if (i != socialMedia.length) widgets.add(const SizedBox(width: 10.0));
+    });
+
+    return widgets;
   }
 }
 

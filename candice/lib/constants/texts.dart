@@ -14,3 +14,14 @@ const String kContribute = 'Contribute';
 // TabBar
 const String kArtwork = 'Artwork';
 const String kPastJobs = 'Past jobs';
+
+//Social Media
+const String kFacebook = 'Facebook';
+const String kInstagram = 'Instagram';
+const String kSoundCloud = 'SoundCloud';
+const String kSpotify = 'Spotify';
+const String kSnapchat = 'Snapchat';
+//const String kTikTok = 'TikTok'; // TODO: TikTok logo
+const String kTwitter = 'Twitter';
+const String kWeb = 'Web';
+const String kYouTube = 'YouTube';

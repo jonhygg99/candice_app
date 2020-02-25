@@ -20,8 +20,15 @@ dependencies:
   flutter:
     sdk: flutter
 
+# icons
   cupertino_icons: ^0.1.2
+  community_material_icon: ^3.5.95 # TODO: Need to find a lightweight package for Social Media icons
+# internationalization and localization facilities
   intl: ^0.16.1
+# launch url
+  url_launcher: ^5.4.2
+# html tags for web
+  universal_html: ^1.1.15
 
 dev_dependencies:
   flutter_test:

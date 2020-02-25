@@ -1,6 +1,7 @@
 import 'package:candice/constants/colors.dart';
 import 'package:candice/constants/measures.dart';
 import 'package:candice/constants/texts.dart';
+import 'package:candice/constants/typography.dart';
 import 'package:flutter/material.dart';
 
 class ContributeBubble extends StatelessWidget {
@@ -42,7 +43,7 @@ class ContributeBubble extends StatelessWidget {
                       kContribute,
                       style: const TextStyle(
                           fontSize: 18,
-                          fontFamily: 'Roboto-Bold',
+                          fontFamily: kRobotoBold,
                           fontWeight: FontWeight.bold),
                     ),
                   ),

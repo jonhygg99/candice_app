@@ -1,8 +1,8 @@
+import 'package:candice/constants/functions.dart';
 import 'package:candice/constants/measures.dart';
 import 'package:candice/constants/texts.dart';
 import 'package:candice/screens/profile/socialMediaBubbles.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class StatisticsBubble extends StatelessWidget {
   StatisticsBubble({this.uploads, this.reproductions, this.hearts});
@@ -75,10 +75,6 @@ class StatisticsNumbers extends StatelessWidget {
   StatisticsNumbers({this.number, this.title});
   final int number;
   final String title;
-
-  String numberFormat(int nb) {
-    return NumberFormat.compact().format(nb);
-  }
 
   @override
   Widget build(BuildContext context) {

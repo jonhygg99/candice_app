@@ -1,8 +1,12 @@
 import 'package:candice/constants/colors.dart';
+import 'package:candice/constants/functions.dart';
 import 'package:candice/constants/measures.dart';
 import 'package:candice/constants/texts.dart';
 import 'package:candice/constants/typography.dart';
+import 'package:candice/screens/profile/backgroundImage.dart';
 import 'package:flutter/material.dart';
+
+import 'story/stories.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -46,126 +50,182 @@ class Home extends StatelessWidget {
 class PostSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return ListView(
       children: <Widget>[
-        Story(),
-        Text('111111111111'),
+        Stories(),
+        Posts(),
       ],
     );
   }
 }
 
-class Story extends StatelessWidget {
+class Posts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: <Widget>[
-          AddStory(),
-          PeopleStories(),
-        ],
-      ),
+    return Column(
+      children: <PostDesign>[
+        PostDesign(),
+        PostDesign(),
+      ],
     );
   }
 }
 
-class AddStory extends StatelessWidget {
+class PostDesign extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-          left: kBigSeparation,
-          top: kCommonSeparation,
-          right: kMediumSeparation / 2,
-          bottom: kHugeSeparation),
-      child: InkWell(
-        onTap: () => print('profile bubble tapped'),
-        borderRadius: BorderRadius.all(Radius.circular(35.0)),
-        child: Stack(
+      padding: kPaddingPost,
+      child: Material(
+        elevation: kElevation,
+        color: Colors.transparent,
+        child: Column(
           children: <Widget>[
-            CircleAvatar(
-              backgroundImage: NetworkImage(
-                'https://images.unsplash.com/photo-1578680671705-0965e325b2ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1233&q=80',
-              ),
-              radius: 35.0,
-              backgroundColor: kDefaultColorLoading,
+            Stack(
+              children: <Widget>[
+                BackgroundImage(
+                  backgroundImage:
+                      'https://images.unsplash.com/photo-1581289098325-fd41f57a9d4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1301&q=80',
+                  height: kPostBackgroundImageHeight,
+                ),
+                Positioned(
+                  top: kCommonSeparation,
+                  left: kCommonSeparation,
+                  child: Text(
+                    'Break my soul',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24.0,
+                      fontFamily: kRobotoBold,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: kPostBackgroundImageHeight / 2 - 50,
+                  left: MediaQuery.of(context).size.width / 2 - 50,
+                  child: Opacity(
+                    opacity: kOpacity,
+                    child: Icon(
+                      Icons.play_circle_filled,
+                      color: Colors.white,
+                      size: 100,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  bottom: 0,
+                  left: 165,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: kSmallSeparation,
+                      vertical: kTinySeparation,
+                    ),
+                    child: Container(
+                      width: kPostBackgroundImageHeight,
+                      height: 30.0,
+                      child: Row(
+                        children: <Widget>[
+                          FlatButton(
+                            onPressed: () => print('Liked post'),
+                            color: Colors.grey.withOpacity(0.5),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0)),
+                            child: Row(
+                              children: <Widget>[
+                                Icon(
+                                  Icons.mode_comment,
+                                  color: Colors.blue,
+                                ),
+                                const SizedBox(width: kTinySeparation),
+                                Text(
+                                  numberFormat(212),
+                                  style: TextStyle(color: Colors.white),
+                                )
+                              ],
+                            ),
+                          ),
+                          const SizedBox(width: kSmallSeparation),
+                          FlatButton(
+                            onPressed: () => print('Liked post'),
+                            color: Colors.grey.withOpacity(0.5),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0)),
+                            child: Row(
+                              children: <Widget>[
+                                const Icon(
+                                  Icons.favorite,
+                                  color: kPink,
+                                ),
+                                const SizedBox(width: kTinySeparation),
+                                Text(
+                                  numberFormat(2032),
+                                  style: const TextStyle(color: Colors.white),
+                                )
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                              width: kHugeSeparation + kMediumSeparation),
+//                        TextField(
+//                          decoration:
+//                              InputDecoration(hintText: 'Add comment...'),
+//                        )
+                        ],
+                      ),
+                    ),
+                  ),
+                )
+              ],
             ),
-            Positioned(
-              right: -1.0,
-              bottom: 0,
-              child: Icon(Icons.add_circle, color: Colors.pinkAccent),
-            )
+            Container(
+              height: 90.0,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: const BorderRadius.only(
+                    bottomLeft: kRadiusCircular, bottomRight: kRadiusCircular),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: kMediumSeparation,
+                  vertical: kSmallSeparation,
+                ),
+                child: Row(
+                  children: <Widget>[
+                    CircleAvatar(
+                      backgroundImage: NetworkImage(
+                          'https://images.unsplash.com/photo-1536896407451-6e3dd976edd1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80'),
+                      radius: 35.0,
+                      backgroundColor: kDefaultColorLoading,
+                    ),
+                    const SizedBox(width: kCommonSeparation),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          'Julie Howard',
+                          style: TextStyle(
+                              fontSize: 18.0,
+                              fontFamily: kRobotoBold,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(height: kSmallSeparation),
+                        Text(
+                          '42 min ago',
+                          style: TextStyle(
+                            color: Colors.black54,
+                          ),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
     );
-  }
-}
-
-class StoryDesign extends StatelessWidget {
-  StoryDesign(this.profilePic);
-  final String profilePic;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(
-          left: kMediumSeparation / 2,
-          top: kCommonSeparation,
-          right: kMediumSeparation / 2,
-          bottom: kHugeSeparation),
-      child: InkWell(
-        onTap: () => print('profile bubble tapped'),
-        borderRadius: BorderRadius.all(Radius.circular(35.0)),
-        child: Container(
-          decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(color: kLightPink, width: 3)),
-          child: Container(
-            decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(color: Colors.transparent, width: 2)),
-            child: CircleAvatar(
-              backgroundImage: NetworkImage(profilePic),
-              radius: 35.0,
-              backgroundColor: kDefaultColorLoading,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class PeopleStories extends StatelessWidget {
-  final List<String> storiesPic = [
-    'https://images.unsplash.com/photo-1536896407451-6e3dd976edd1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80',
-    'https://images.unsplash.com/photo-1553457055-88e354f1257c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80',
-    'https://images.unsplash.com/photo-1545064189-2d901f702a28?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80',
-    'https://images.unsplash.com/photo-1501943416256-08140ba03763?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1436&q=80',
-    'https://images.unsplash.com/photo-1572151510493-38eb612d23be?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1268&q=80',
-    'https://images.unsplash.com/photo-1548536154-b47a70d27d8e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80',
-//    'https://images.unsplash.com/photo-1582129617595-c657a072c9b9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3662&q=80',
-//    'https://images.unsplash.com/photo-1559870904-406aeea0a89c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80'
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: _buildStoriesList(),
-    );
-  }
-
-  List<StoryDesign> _buildStoriesList() {
-    List<StoryDesign> widgets = [];
-    int i = 0;
-
-    storiesPic.forEach((pic) {
-      ++i;
-      widgets.add(StoryDesign(pic));
-    });
-
-    return widgets;
   }
 }

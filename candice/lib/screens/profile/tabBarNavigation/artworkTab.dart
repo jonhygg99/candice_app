@@ -43,9 +43,6 @@ class ArtworkTab extends StatelessWidget {
 }
 
 class PostPreview extends StatelessWidget {
-//  const PostPreview({
-//    Key key,
-//  }) : super(key: key);
   PostPreview({this.backgroundImage, this.postTitle});
   final String backgroundImage;
   final String postTitle;
@@ -71,7 +68,7 @@ class PostPreview extends StatelessWidget {
               (kMediumSeparation +
                   kMediumSeparation), // Depends on the BackgroundImage widget, the width and height
           child: Opacity(
-            opacity: 0.75,
+            opacity: kOpacity,
             child: IconButton(
               icon: Icon(
                   Icons.play_circle_filled /*: Icons.pause_circle_filled */),

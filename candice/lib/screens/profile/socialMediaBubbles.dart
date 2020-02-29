@@ -17,12 +17,9 @@ class SocialMediaBubbles extends StatelessWidget {
     return Material(
       elevation: kElevation,
       shape: const CircleBorder(),
-      child: InkWell(
-        customBorder: const CircleBorder(),
-        child: IconButton(
-          icon: _getIcon(name),
-        ),
-        onTap: () {
+      child: IconButton(
+        icon: _getIcon(name),
+        onPressed: () {
           try {
             if (Platform.isIOS || Platform.isAndroid)
               _launchURLInMobile(url);

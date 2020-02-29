@@ -29,6 +29,9 @@ dependencies:
   url_launcher: ^5.4.2
 # html tags for web
   universal_html: ^1.1.15
+# state management
+  provider: ^4.0.4
+
 
 dev_dependencies:
   flutter_test:
@@ -46,6 +49,10 @@ flutter:
       fonts:
         - asset: assets/fonts/Roboto-Regular.ttf
         - asset: assets/fonts/Roboto-Bold.ttf
+          weight: 700 # TODO: Not working
+    - family: Pacifico
+      fonts:
+        - asset: assets/fonts/Pacifico-Regular.ttf
 
   # To add assets to your application, add an assets section, like this:
   # assets:

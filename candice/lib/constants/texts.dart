@@ -1,10 +1,19 @@
-// Action Buttons
+import 'package:candice/screens/profile/settings/aboutUs.dart';
+import 'package:candice/screens/profile/settings/editProfile.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
-const String kPlaySongs = 'Play songs';
-const String kImFan = 'I\'m fan';
-const String kBeFan = 'Be fan';
+// HOME SCREEN
+const String kFollowing = 'Following';
+const String kTrending = 'Trending';
 
-// Profile
+// PROFILE SCREEN
+// PopupMenuButton
+const String kEditProfile = 'Edit profile';
+const int kEditProfileValue = 0;
+const String kAboutUs = 'About us';
+const int kAboutUsValue = 1;
+List<Widget> kScreenSettings = [EditProfile(), AboutUs()];
 // Statistics
 const String kUploads = 'Uploads';
 const String kReproductions = 'Reproductions';
@@ -14,7 +23,6 @@ const String kContribute = 'Contribute';
 // TabBar
 const String kArtwork = 'Artwork';
 const String kPastJobs = 'Past jobs';
-
 //Social Media
 const String kFacebook = 'Facebook';
 const String kInstagram = 'Instagram';
@@ -25,3 +33,7 @@ const String kSnapchat = 'Snapchat';
 const String kTwitter = 'Twitter';
 const String kWeb = 'Web';
 const String kYouTube = 'YouTube';
+// Action Buttons
+const String kPlaySongs = 'Play songs';
+const String kImFan = 'I\'m fan';
+const String kBeFan = 'Be fan';

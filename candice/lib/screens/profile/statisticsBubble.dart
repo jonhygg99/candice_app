@@ -45,7 +45,7 @@ class StatisticsBubble extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: _buildSocialMediaList(),
                   )
-                : SizedBox(height: 0.0),
+                : const SizedBox(height: 0.0),
           ],
         ),
       ),

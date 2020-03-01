@@ -4,7 +4,7 @@ import 'package:candice/models/appState.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../backgroundImage.dart';
+import '../../../common/backgroundImage.dart';
 
 class ArtworkTab extends StatelessWidget {
   @override

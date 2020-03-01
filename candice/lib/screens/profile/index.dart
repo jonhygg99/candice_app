@@ -3,7 +3,7 @@ import 'package:candice/models/appState.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'backgroundImage.dart';
+import '../../common/backgroundImage.dart';
 import 'contributeBubble.dart';
 import 'mainBubble.dart';
 import 'settings/settingsPopupMenu.dart';

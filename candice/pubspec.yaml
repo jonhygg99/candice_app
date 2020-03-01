@@ -31,7 +31,8 @@ dependencies:
   universal_html: ^1.1.15
 # state management
   provider: ^4.0.4
-
+# Cache management
+  cached_network_image: ^2.0.0
 
 dev_dependencies:
   flutter_test:

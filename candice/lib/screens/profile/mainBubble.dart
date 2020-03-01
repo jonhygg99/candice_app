@@ -1,3 +1,4 @@
+import 'package:candice/common/profileImage.dart';
 import 'package:candice/constants/colors.dart';
 import 'package:candice/constants/measures.dart';
 import 'package:candice/constants/texts.dart';
@@ -34,11 +35,7 @@ class MainBubble extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                CircleAvatar(
-                  backgroundImage: NetworkImage(photoProfile),
-                  radius: 40.0,
-                  backgroundColor: kDefaultColorLoading,
-                ),
+                PhotoProfile(imageUrl: photoProfile, size: kSizePhotoProfile),
                 const SizedBox(width: kCommonSeparation),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

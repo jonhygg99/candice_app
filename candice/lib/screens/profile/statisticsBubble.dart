@@ -1,4 +1,4 @@
-import 'package:candice/constants/functions.dart';
+import 'package:candice/common/numberFormat.dart';
 import 'package:candice/constants/measures.dart';
 import 'package:candice/constants/texts.dart';
 import 'package:candice/screens/profile/socialMediaBubbles.dart';

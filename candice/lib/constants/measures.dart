@@ -5,6 +5,8 @@ const int kCommentMaxLength = 255;
 const double kRadius = 12.0;
 const double kElevation = 10.0;
 const double kOpacity = 0.75;
+
+// Separation
 //const double kGiantSeparation = 35.0;
 const double kHugeSeparation = 30.0;
 const double kBigSeparation = 25.0;
@@ -14,8 +16,18 @@ const double kSmallSeparation = 10.0;
 const double kTinySeparation = 5.0;
 const double kTabBarSeparation = 40.0;
 
+// Image size
+const double kSizePhotoProfile = 80.0;
+const double kSizePhotoProfileStory = 70.0;
+const double kBackgroundImageHeight = 350.0;
+const double kPostPreviewBackgroundImageHeight = 200.0;
+const double kPostBackgroundImageHeight = 400.0;
+
+// Radius
 const Radius kRadiusCircular = Radius.circular(kRadius);
 BorderRadius kBorderRadiusCircular = BorderRadius.circular(kRadius);
+
+// Padding
 const EdgeInsets kPaddingPost = EdgeInsets.symmetric(
     horizontal: kMediumSeparation, vertical: kBigSeparation / 2);
 const EdgeInsets kPaddingCard = EdgeInsets.symmetric(
@@ -24,14 +36,11 @@ const EdgeInsets kPaddingTabBar =
     EdgeInsets.symmetric(horizontal: kBigSeparation);
 const EdgeInsets kPaddingButton =
     EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0);
-const EdgeInsets kPaddingStory = const EdgeInsets.only(
+const EdgeInsets kPaddingStory = EdgeInsets.only(
     left: kBigSeparation,
     top: kCommonSeparation,
     right: kMediumSeparation / 2,
     bottom: kCommonSeparation);
-const kMarginCard = EdgeInsets.symmetric(horizontal: kMediumSeparation);
 
-// Profile
-const double kBackgroundImageHeight = 350.0;
-const double kPostPreviewBackgroundImageHeight = 200.0;
-const double kPostBackgroundImageHeight = 400.0;
+// Margin
+const kMarginCard = EdgeInsets.symmetric(horizontal: kMediumSeparation);

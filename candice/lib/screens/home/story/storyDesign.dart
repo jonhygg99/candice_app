@@ -1,3 +1,4 @@
+import 'package:candice/common/profileImage.dart';
 import 'package:candice/constants/colors.dart';
 import 'package:candice/constants/measures.dart';
 import 'package:flutter/material.dart';
@@ -25,10 +26,9 @@ class StoryDesign extends StatelessWidget {
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(color: Colors.transparent, width: 2)),
-            child: CircleAvatar(
-              backgroundImage: NetworkImage(profilePic),
-              radius: 35.0,
-              backgroundColor: kDefaultColorLoading,
+            child: PhotoProfile(
+              imageUrl: profilePic,
+              size: kSizePhotoProfileStory,
             ),
           ),
         ),

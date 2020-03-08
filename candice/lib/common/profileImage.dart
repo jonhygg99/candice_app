@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:candice/screens/profile/index.dart';
 import 'package:flutter/material.dart';
 
 //imageUrl: backgroundImage,
@@ -9,22 +10,35 @@ import 'package:flutter/material.dart';
 //width: _buildWidth(context),
 //borderRadius: _buildBorderRadius()), // TODO: change
 
+void goToUserProfile(context, appState, id) {
+  appState.lastUser.fetchUser(id);
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => Profile(appState.lastUser)),
+  );
+}
+
 class PhotoProfile extends StatelessWidget {
-  PhotoProfile({this.imageUrl, this.size});
+  PhotoProfile({@required this.imageUrl, @required this.size, this.action});
   final String imageUrl;
   final double size;
+  final Function action;
+
   @override
   Widget build(BuildContext context) {
-    return ClipOval(
-      child: CachedNetworkImage(
-          imageUrl: imageUrl,
-          width: size,
-          height: size,
-          fit: BoxFit.fitWidth,
-          //placeholder: (context, url) =>
+    return InkWell(
+      onTap: action,
+      child: ClipOval(
+        child: CachedNetworkImage(
+            imageUrl: imageUrl,
+            width: size,
+            height: size,
+            fit: BoxFit.fitWidth,
+            //placeholder: (context, url) =>
 //CircularProgressIndicator(), // TODO: logo rotate
-          errorWidget: (context, url, error) =>
-              FailPhotoProfile()), // TODO: change
+            errorWidget: (context, url, error) =>
+                FailPhotoProfile()), // TODO: change
+      ),
     );
   }
 }

@@ -20,6 +20,7 @@ class App extends StatelessWidget {
         child: NavigationBar(),
       ),
       theme: ThemeData(fontFamily: kRobotoFontFamily),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -36,35 +37,34 @@ class _NavigationBarState extends State<NavigationBar> {
   bool openMusicTab = false;
   bool showMusicTab = false;
   bool playMusic = false;
-  int index = 0;
+  int index = 3;
   List<Widget> screens;
 
   @override
   void initState() {
+    final appState = Provider.of<AppState>(context, listen: false);
     screens = [
       Home(),
       Search(),
       AddPost(),
       Notifications(),
-      Profile('a'),
+      Profile(appState.currentUser),
     ];
-
+//    print(appState.currentUser.userName);
 //    Future.microtask(() =>
 //        Provider.of<AppState>(context).fetchSomething(someValue);
 //    );
     super.initState();
   }
 
-  @override
   Widget build(BuildContext context) {
-    final appState = Provider.of<AppState>(context, listen: true);
 //    Consumer<AppState>(builder: (_, appState , __) => Text('a'));
 
     return Scaffold(
       backgroundColor: Colors.black,
       body: screens[index],
-      persistentFooterButtons:
-          appState.showMusicTab ? <Widget>[MusicPlayer()] : null,
+//      persistentFooterButtons:
+//          appState.showMusicTab ? <Widget>[MusicPlayer()] : null,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: index,
         onTap: (int index) {
@@ -76,40 +76,31 @@ class _NavigationBarState extends State<NavigationBar> {
         showSelectedLabels: false,
         showUnselectedLabels: false,
         backgroundColor: Colors.black,
-        items: [
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
-              color: index == 0 ? Colors.pinkAccent : Colors.white,
-            ),
+            activeIcon: const Icon(Icons.home, color: Colors.pinkAccent),
+            icon: const Icon(Icons.home, color: Colors.white),
             title: const Text('Home'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.search,
-              color: index == 1 ? Colors.pinkAccent : Colors.white,
-            ),
+            activeIcon: const Icon(Icons.search, color: Colors.pinkAccent),
+            icon: const Icon(Icons.search, color: Colors.white),
             title: const Text('Search'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.add_circle,
-              color: index == 2 ? Colors.pinkAccent : Colors.white,
-            ),
-            title: Text('Add post'),
+            activeIcon: const Icon(Icons.add_circle, color: Colors.pinkAccent),
+            icon: const Icon(Icons.add_circle, color: Colors.white),
+            title: const Text('Add post'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.notifications,
-              color: index == 3 ? Colors.pinkAccent : Colors.white,
-            ),
+            activeIcon:
+                const Icon(Icons.notifications, color: Colors.pinkAccent),
+            icon: const Icon(Icons.notifications, color: Colors.white),
             title: const Text('Notifications'),
           ),
           BottomNavigationBarItem(
-              icon: Icon(
-                Icons.person,
-                color: index == 4 ? Colors.pinkAccent : Colors.white,
-              ),
+              activeIcon: const Icon(Icons.person, color: Colors.pinkAccent),
+              icon: const Icon(Icons.person, color: Colors.white),
               title: const Text('Profile'))
         ],
       ),
@@ -117,43 +108,43 @@ class _NavigationBarState extends State<NavigationBar> {
   }
 }
 
-class MusicPlayer extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final appState = Provider.of<AppState>(context, listen: true);
-
-    return Row(
-      children: <Widget>[
-        InkWell(
-          child: Text(
-            'Break my soul',
-            style: TextStyle(
-                color: Colors.white,
-                fontFamily: kRobotoBold,
-                fontWeight: FontWeight.bold),
-          ),
-          onTap: () => print('break'),
-        ),
-        IconButton(
-            icon: Icon(Icons.favorite_border, color: Colors.white),
-            onPressed: () => print('a')),
-        IconButton(
-          icon: Icon(
-            appState.musicPlaying
-                ? Icons.pause_circle_filled
-                : Icons.play_circle_filled,
-            color: Colors.white,
-          ),
-          onPressed: appState.playStopMusic,
-        ),
-      ],
-    );
-//    Container(
-//                padding: const EdgeInsets.symmetric(
-//                    vertical:
-//                        10.0), // TODO: is the good padding vertical to be in the center?
-//    child: Row(
-//    children: <Widget>[],
-//    ),
-  }
-}
+//class MusicPlayer extends StatelessWidget {
+//  @override
+//  Widget build(BuildContext context) {
+//    final appState = Provider.of<AppState>(context, listen: true);
+//
+//    return Row(
+//      children: <Widget>[
+//        InkWell(
+//          child: Text(
+//            'Break my soul',
+//            style: TextStyle(
+//                color: Colors.white,
+//                fontFamily: kRobotoBold,
+//                fontWeight: FontWeight.bold),
+//          ),
+//          onTap: () => print('break'),
+//        ),
+//        IconButton(
+//            icon: Icon(Icons.favorite_border, color: Colors.white),
+//            onPressed: () => print('a')),
+//        IconButton(
+//          icon: Icon(
+//            appState.musicPlaying
+//                ? Icons.pause_circle_filled
+//                : Icons.play_circle_filled,
+//            color: Colors.white,
+//          ),
+//          onPressed: appState.playStopMusic,
+//        ),
+//      ],
+//    );
+////    Container(
+////                padding: const EdgeInsets.symmetric(
+////                    vertical:
+////                        10.0), // TODO: is the good padding vertical to be in the center?
+////    child: Row(
+////    children: <Widget>[],
+////    ),
+//  }
+//}

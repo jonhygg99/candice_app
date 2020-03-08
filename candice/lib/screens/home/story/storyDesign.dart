@@ -4,17 +4,20 @@ import 'package:candice/constants/measures.dart';
 import 'package:flutter/material.dart';
 
 class StoryDesign extends StatelessWidget {
-  StoryDesign(this.profilePic);
+  StoryDesign({@required this.profilePic, this.withPadding = false});
   final String profilePic;
+  final bool withPadding;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-          left: kMediumSeparation / 2,
-          top: kCommonSeparation,
-          right: kMediumSeparation / 2,
-          bottom: kCommonSeparation),
+      padding: withPadding
+          ? const EdgeInsets.only(
+              left: kMediumSeparation / 2,
+              top: kCommonSeparation,
+              right: kMediumSeparation / 2,
+              bottom: kCommonSeparation)
+          : const EdgeInsets.all(0.0),
       child: InkWell(
         onTap: () => print('profile bubble tapped'),
         borderRadius: BorderRadius.all(Radius.circular(35.0)),

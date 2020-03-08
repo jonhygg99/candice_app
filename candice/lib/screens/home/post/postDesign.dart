@@ -4,11 +4,14 @@ import 'package:candice/common/profileImage.dart';
 import 'package:candice/constants/icons.dart';
 import 'package:candice/constants/measures.dart';
 import 'package:candice/constants/typography.dart';
+import 'package:candice/models/appState.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class PostDesign extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final appState = Provider.of<AppState>(context, listen: false);
     return Padding(
       padding: kPaddingPost,
       child: Material(
@@ -104,25 +107,27 @@ class PostDesign extends StatelessWidget {
                       imageUrl:
                           'https://images.unsplash.com/photo-1536896407451-6e3dd976edd1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80',
                       size: kSizePhotoProfileStory,
+                      action: () => goToUserProfile(context, appState, '1'),
                     ),
                     const SizedBox(width: kCommonSeparation),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(
-                          'Julie Howard',
-                          style: TextStyle(
-                              fontSize: 18.0,
-                              fontFamily: kRobotoBold,
-                              fontWeight: FontWeight.bold),
+                        InkWell(
+                          child: Text(
+                            'Julie Howard',
+                            style: TextStyle(
+                                fontSize: 18.0,
+                                fontFamily: kRobotoBold,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          onTap: () => goToUserProfile(context, appState, '1'),
                         ),
                         const SizedBox(height: kSmallSeparation),
                         Text(
-                          '42 min ago',
-                          style: TextStyle(
-                            color: Colors.black54,
-                          ),
+                          '42 min ago', // TODO: time - time
+                          style: TextStyle(color: Colors.black54),
                         )
                       ],
                     )
@@ -138,7 +143,7 @@ class PostDesign extends StatelessWidget {
 }
 
 class BubblePost extends StatelessWidget {
-  BubblePost({this.icon, this.number, this.action});
+  BubblePost({@required this.icon, @required this.number, this.action});
   final Icon icon;
   final int number;
   final Function action;

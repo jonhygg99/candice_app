@@ -1,7 +1,6 @@
 import 'package:candice/constants/measures.dart';
-import 'package:candice/models/appState.dart';
+import 'package:candice/models/user/user.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../../common/backgroundImage.dart';
 import 'contributeBubble.dart';
@@ -11,8 +10,8 @@ import 'statisticsBubble.dart';
 import 'tabBarNavigation/tabBarNavigation.dart';
 
 class Profile extends StatefulWidget {
-  Profile(this.a);
-  final String a;
+  Profile(this.user);
+  final User user;
   @override
   _ProfileState createState() => _ProfileState();
 }
@@ -24,9 +23,7 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
-    final appState = Provider.of<AppState>(context, listen: true);
-
-    return Container(
+    return Material(
       color: Colors.white,
       child: SafeArea(
         child: RefreshIndicator(
@@ -38,9 +35,15 @@ class _ProfileState extends State<Profile> {
                 Positioned(
                   top: 0,
                   child: BackgroundImage(
-                      backgroundImage: appState.currentUser.backgroundImage,
-                      height: kBackgroundImageHeight),
+                    backgroundImage: widget.user.backgroundImage,
+                    height: kBackgroundImageHeight,
+                  ),
                 ),
+                widget.user.goBack
+                    ? IconButton(
+                        icon: Icon(Icons.arrow_back, color: Colors.white),
+                        onPressed: () => Navigator.pop(context))
+                    : SizedBox(width: 0),
                 Positioned(
                   top: 0,
                   right: 5,
@@ -52,24 +55,24 @@ class _ProfileState extends State<Profile> {
                         height: kBackgroundImageHeight / 2 +
                             kBackgroundImageHeight / 5),
                     MainBubble(
-                        name: appState.currentUser.userName,
-                        photoProfile:
-                            'https://images.unsplash.com/photo-1578680671705-0965e325b2ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1233&q=80',
-                        profession: 'Singer and Guitarrist',
-                        description:
-                            'I’m a musician who loves Pop and Rock. 🤘 Currently studying for being a lawyer, but what I truly want is to sing in the shower.',
-                        isFollowing: isFollowing),
+                      name: widget.user.userName,
+                      photoProfile: widget.user.photoProfile,
+                      profession: widget.user.profession,
+                      description: widget.user.description,
+                      isFollowing: isFollowing,
+                    ),
                     const SizedBox(height: kCommonSeparation),
                     StatisticsBubble(
                         uploads: 36, reproductions: 2000000, hearts: 128000),
                     const SizedBox(height: kCommonSeparation),
-                    ContributeBubble(
-                      contributeDescription:
-                          'Small steps every day will bring what I truly want! 😇',
-                    ),
+                    widget.user.contributeBubble
+                        ? ContributeBubble(
+                            contributeDescription:
+                                widget.user.contributeDescription,
+                          )
+                        : SizedBox(width: 0),
                     const SizedBox(height: kHugeSeparation),
-                    TabBarNavigation(),
-//                  TabBarView(children: [Text("1"), Text('2')]),
+                    TabBarNavigation(posts: widget.user.posts),
                     const SizedBox(height: kCommonSeparation),
                   ],
                 )

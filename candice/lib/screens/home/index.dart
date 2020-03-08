@@ -37,7 +37,7 @@ class Home extends StatelessWidget {
           body: TabBarView(
             children: [
               PostSection(), // TODO: Following
-              PostSection(), // TODO: Trending
+              PostSection(), // TODO: Trending Network images instead of cache
             ],
           ),
         ),

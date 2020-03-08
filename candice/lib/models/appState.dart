@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 import 'user/currentUser.dart';
+import 'user/lastUser.dart';
 
 class AppState extends ChangeNotifier {
   AppState() {
@@ -8,31 +9,32 @@ class AppState extends ChangeNotifier {
   }
 
   // User
-  var currentUser = CurrentUser();
+  CurrentUser currentUser = CurrentUser();
+  LastUser lastUser = LastUser();
 
   Future<void> _fetchCurrentUser() async {
-    currentUser.fetchUser('1');
+    currentUser.fetchUser(0);
   }
 
   // Music Player
-  bool _showMusicTab = false;
-  bool _openMusicTab = false;
-  bool _musicPlaying = false;
-
-  bool get showMusicTab => _showMusicTab;
-  bool get openMusicTab => _openMusicTab;
-  bool get musicPlaying => _musicPlaying;
-
-  void showMusicTabAndPlay() {
-    _showMusicTab = true;
-    _musicPlaying = !_musicPlaying;
-    notifyListeners();
-  }
-
-  void playStopMusic() {
-    _musicPlaying = !_musicPlaying;
-    notifyListeners();
-  }
+//  bool _showMusicTab = false;
+//  bool _openMusicTab = false;
+//  bool _musicPlaying = false;
+//
+//  bool get showMusicTab => _showMusicTab;
+//  bool get openMusicTab => _openMusicTab;
+//  bool get musicPlaying => _musicPlaying;
+//
+//  void showMusicTabAndPlay() {
+//    _showMusicTab = true;
+//    _musicPlaying = !_musicPlaying;
+//    notifyListeners();
+//  }
+//
+//  void playStopMusic() {
+//    _musicPlaying = !_musicPlaying;
+//    notifyListeners();
+//  }
 
   Future<void> _fetchAll() async {
     print('fetching');

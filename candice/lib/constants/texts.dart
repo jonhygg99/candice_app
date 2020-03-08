@@ -7,6 +7,10 @@ import 'package:flutter/material.dart';
 const String kFollowing = 'Following';
 const String kTrending = 'Trending';
 
+// NOTIFICATIONS SCREEN
+const String kMessages = 'Messages';
+const String kNotifications = 'Notifications';
+
 // PROFILE SCREEN
 // PopupMenuButton
 const String kEditProfile = 'Edit profile';

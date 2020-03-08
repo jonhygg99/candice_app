@@ -25,7 +25,7 @@ class PeopleStories extends StatelessWidget {
     List<StoryDesign> widgets = [];
 
     storiesPic.forEach((pic) {
-      widgets.add(StoryDesign(pic));
+      widgets.add(StoryDesign(profilePic: pic, withPadding: true));
     });
 
     return widgets;

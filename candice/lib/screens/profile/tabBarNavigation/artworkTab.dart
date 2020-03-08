@@ -1,56 +1,66 @@
 import 'package:candice/constants/measures.dart';
 import 'package:candice/constants/typography.dart';
-import 'package:candice/models/appState.dart';
+import 'package:candice/models/user/post.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../../../common/backgroundImage.dart';
 
 class ArtworkTab extends StatelessWidget {
+  ArtworkTab(this.posts);
+  final List<Post> posts;
+
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: <Widget>[
-        Row(
+        children: _buildPosts() ?? Text('This user hasn\'t upload any post'));
+  }
+
+  List<Widget> _buildPosts() {
+    List<Widget> widgets = [];
+
+    for (int i = 0; i < posts.length; ++i) {
+      if (i + 1 < posts.length) {
+        widgets.add(Row(
           children: <Widget>[
-            PostPreview(
-              backgroundImage:
-                  'https://images.unsplash.com/photo-1581289098325-fd41f57a9d4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1601&q=80',
-              postTitle: 'Break my soul',
+            PostPreviewDesign(
+              title: posts[i].title,
+              backgroundImage: posts[i].backgroundImage,
             ),
             const SizedBox(width: kSmallSeparation),
-            PostPreview(
-              backgroundImage:
-                  'https://images.unsplash.com/photo-1581289098325-fd41f57a9d4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1601&q=80',
-              postTitle: 'Break my soul',
-            ),
+            PostPreviewDesign(
+              title: posts[i + 1].title,
+              backgroundImage: posts[i + 1].backgroundImage,
+            )
           ],
-        ),
-        const SizedBox(height: kSmallSeparation),
-        Row(
-          children: <Widget>[
-            PostPreview(
-              backgroundImage:
-                  'https://images.unsplash.com/photo-1581289098325-fd41f57a9d4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1601&q=80',
-              postTitle: 'Break my soul',
-            ),
-            const SizedBox(width: kSmallSeparation),
-          ],
-        ),
-      ],
-    );
+        ));
+        ++i;
+      } else {
+        widgets.add(
+          Row(
+            children: <Widget>[
+              PostPreviewDesign(
+                title: posts[i].title,
+                backgroundImage: posts[i].backgroundImage,
+              ),
+            ],
+          ),
+        );
+      }
+      widgets.add(const SizedBox(height: kSmallSeparation));
+    }
+    return widgets;
   }
 }
 
-class PostPreview extends StatelessWidget {
-  PostPreview({this.backgroundImage, this.postTitle});
+class PostPreviewDesign extends StatelessWidget {
+  PostPreviewDesign({@required this.backgroundImage, @required this.title});
   final String backgroundImage;
-  final String postTitle;
+  final String title;
   // TODO: Audio/Video
 
   @override
   Widget build(BuildContext context) {
-    final appState = Provider.of<AppState>(context);
+//    final appState = Provider.of<AppState>(context);
 
     return Stack(
       children: <Widget>[
@@ -60,7 +70,7 @@ class PostPreview extends StatelessWidget {
         Positioned(
           bottom: 12,
           left: 12,
-          child: Text(postTitle, style: kWhiteBoldText),
+          child: Text(title, style: kWhiteBoldText),
         ),
         Positioned(
           top: kPostPreviewBackgroundImageHeight / 4,
@@ -74,7 +84,7 @@ class PostPreview extends StatelessWidget {
                   Icons.play_circle_filled /*: Icons.pause_circle_filled */),
               iconSize: 70,
               color: Colors.white,
-              onPressed: appState.showMusicTabAndPlay,
+              onPressed: () => print('playing song'),
             ),
           ),
         ),

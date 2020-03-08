@@ -3,7 +3,7 @@ import 'package:candice/constants/measures.dart';
 import 'package:flutter/material.dart';
 
 class BackgroundImage extends StatelessWidget {
-  BackgroundImage({this.backgroundImage, @required this.height});
+  BackgroundImage({@required this.backgroundImage, @required this.height});
   final String backgroundImage;
   final double height;
 
@@ -51,7 +51,11 @@ class BackgroundImage extends StatelessWidget {
 }
 
 class FailBackgroundImage extends StatelessWidget {
-  FailBackgroundImage({this.width, this.height, this.borderRadius});
+  FailBackgroundImage({
+    @required this.width,
+    @required this.height,
+    @required this.borderRadius,
+  });
   final double width;
   final double height;
   final BorderRadius borderRadius;

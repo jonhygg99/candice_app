@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 const int kCommentMaxLength = 255;
 // STYLE
 const double kRadius = 12.0;
-const double kElevation = 10.0;
+const double kElevation = 5.0;
 const double kOpacity = 0.75;
 
 // Separation
@@ -19,6 +19,8 @@ const double kTabBarSeparation = 40.0;
 // Image size
 const double kSizePhotoProfile = 80.0;
 const double kSizePhotoProfileStory = 70.0;
+const double kSizePhotoProfileReviews = 70.0;
+const double kSizePhotoProfileMessages = 70.0;
 const double kBackgroundImageHeight = 350.0;
 const double kPostPreviewBackgroundImageHeight = 200.0;
 const double kPostBackgroundImageHeight = 400.0;
@@ -32,6 +34,8 @@ const EdgeInsets kPaddingPost = EdgeInsets.symmetric(
     horizontal: kMediumSeparation, vertical: kBigSeparation / 2);
 const EdgeInsets kPaddingCard = EdgeInsets.symmetric(
     horizontal: kBigSeparation, vertical: kCommonSeparation);
+const EdgeInsets kPaddingCardMessages = EdgeInsets.symmetric(
+    horizontal: kCommonSeparation, vertical: kMediumSeparation);
 const EdgeInsets kPaddingTabBar =
     EdgeInsets.symmetric(horizontal: kBigSeparation);
 const EdgeInsets kPaddingButton =

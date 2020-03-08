@@ -33,6 +33,8 @@ dependencies:
   provider: ^4.0.4
 # Cache management
   cached_network_image: ^2.0.0
+# bubble tabBar
+  bubble_tab_indicator: ^0.1.4
 
 dev_dependencies:
   flutter_test:

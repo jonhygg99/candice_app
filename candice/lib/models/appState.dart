@@ -16,6 +16,14 @@ class AppState extends ChangeNotifier {
     currentUser.fetchUser(0);
   }
 
+  // Notifications
+  List<bool> notificationBubbleState = [true, true, true];
+
+  void reverseNotificationBubbleState(int index) {
+    notificationBubbleState[index] = !notificationBubbleState[index];
+    notifyListeners();
+  }
+
   // Music Player
 //  bool _showMusicTab = false;
 //  bool _openMusicTab = false;

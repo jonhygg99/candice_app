@@ -58,8 +58,6 @@ class _NavigationBarState extends State<NavigationBar> {
   }
 
   Widget build(BuildContext context) {
-//    Consumer<AppState>(builder: (_, appState , __) => Text('a'));
-
     return Scaffold(
       backgroundColor: Colors.black,
       body: screens[index],

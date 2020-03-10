@@ -2,9 +2,11 @@ import 'package:candice/constants/colors.dart';
 import 'package:candice/constants/measures.dart';
 import 'package:candice/constants/texts.dart';
 import 'package:candice/constants/typography.dart';
+import 'package:candice/models/appState.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import 'bubbleMessageDesign.dart';
+import 'messagesTab.dart';
 
 class Notifications extends StatelessWidget {
   @override
@@ -55,8 +57,9 @@ class Notifications extends StatelessWidget {
                   ),
                   const SizedBox(height: kCommonSeparation),
                   Expanded(
-                      child: TabBarView(
-                          children: [MessagesTab(), NotificationsTab()])),
+                    child: TabBarView(
+                        children: [MessagesTab(), NotificationsTab()]),
+                  ),
                 ],
               ),
             ),
@@ -67,33 +70,80 @@ class Notifications extends StatelessWidget {
   }
 }
 
-class NotificationsTab extends StatelessWidget {
+class NotificationsTab extends StatefulWidget {
+  @override
+  _NotificationsTabState createState() => _NotificationsTabState();
+}
+
+class _NotificationsTabState extends State<NotificationsTab> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Column(
+      children: <Widget>[
+        BubbleNotificationSort(),
+        const SizedBox(height: kCommonSeparation),
+        Text('down')
+      ],
+    );
   }
 }
 
-class MessagesTab extends StatelessWidget {
+class BubbleNotificationSort extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: <Widget>[
-        BubbleMessageDesign(
-          profilePic:
-              'https://images.unsplash.com/photo-1583129554586-fc0443875a57?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1301&q=80',
-          userName: 'Arlene Fox',
-          lastMessage: 'When we will sing together? 😇',
-          newMessages: 2,
-          story: true,
+    final appState = Provider.of<AppState>(context, listen: true);
+    return Row(
+      children: <BubbleNotificationSortDesign>[
+        BubbleNotificationSortDesign(
+          title: kLikes,
+          action: () => appState.reverseNotificationBubbleState(0),
+          active: appState.notificationBubbleState[0],
         ),
-        BubbleMessageDesign(
-          profilePic:
-              'https://images.unsplash.com/photo-1580851935978-f6b4e359da3f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80',
-          userName: 'James Calvo',
-          lastMessage: 'You have a beautiful voice!',
-        )
+        BubbleNotificationSortDesign(
+          title: kComments,
+          action: () => appState.reverseNotificationBubbleState(1),
+          active: appState.notificationBubbleState[1],
+        ),
+        BubbleNotificationSortDesign(
+          title: kMentions,
+          action: () => appState.reverseNotificationBubbleState(2),
+          active: appState.notificationBubbleState[2],
+        ),
       ],
+    );
+  }
+}
+
+class BubbleNotificationSortDesign extends StatelessWidget {
+  BubbleNotificationSortDesign(
+      {@required this.title, this.action, this.active});
+  final String title;
+  final Function action;
+  final bool active;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(right: kSmallSeparation),
+      child: InkWell(
+          borderRadius: BorderRadius.all(kBorderRadiusCircle),
+          onTap: action,
+          child: Container(
+            padding: kPaddingBubbleNotificationSort,
+            decoration: BoxDecoration(
+                color: active ? kPink : Colors.white,
+                border:
+                    Border.all(width: 3, color: active ? kPink : Colors.black),
+                borderRadius: BorderRadius.all(kBorderRadiusCircle)),
+            child: Text(
+              title,
+              style: TextStyle(
+                color: active ? Colors.white : Colors.black,
+                fontFamily: kRobotoBold,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          )),
     );
   }
 }

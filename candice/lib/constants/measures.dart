@@ -28,6 +28,7 @@ const double kPostBackgroundImageHeight = 400.0;
 // Radius
 const Radius kRadiusCircular = Radius.circular(kRadius);
 BorderRadius kBorderRadiusCircular = BorderRadius.circular(kRadius);
+const Radius kBorderRadiusCircle = Radius.circular(50);
 
 // Padding
 const EdgeInsets kPaddingPost = EdgeInsets.symmetric(
@@ -39,7 +40,9 @@ const EdgeInsets kPaddingCardMessages = EdgeInsets.symmetric(
 const EdgeInsets kPaddingTabBar =
     EdgeInsets.symmetric(horizontal: kBigSeparation);
 const EdgeInsets kPaddingButton =
-    EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0);
+    EdgeInsets.symmetric(horizontal: kCommonSeparation, vertical: 8.0);
+const EdgeInsets kPaddingBubbleNotificationSort = EdgeInsets.symmetric(
+    horizontal: kCommonSeparation, vertical: kTinySeparation);
 const EdgeInsets kPaddingStory = EdgeInsets.only(
     left: kBigSeparation,
     top: kCommonSeparation,

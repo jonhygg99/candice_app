@@ -10,6 +10,10 @@ const String kTrending = 'Trending';
 // NOTIFICATIONS SCREEN
 const String kMessages = 'Messages';
 const String kNotifications = 'Notifications';
+// Notifications
+const String kLikes = 'Likes';
+const String kComments = 'Comments';
+const String kMentions = 'Mentions';
 
 // PROFILE SCREEN
 // PopupMenuButton

@@ -3,6 +3,7 @@ import 'package:candice/constants/measures.dart';
 import 'package:candice/constants/texts.dart';
 import 'package:candice/constants/typography.dart';
 import 'package:candice/models/appState.dart';
+import 'package:candice/models/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -17,7 +18,7 @@ class Notifications extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: kPink,
         child: Icon(Icons.add),
-        onPressed: () => print('pressed'),
+        onPressed: () => print(Localizations.localeOf(context)),
       ),
       body: SafeArea(
         child: Padding(
@@ -40,8 +41,12 @@ class Notifications extends StatelessWidget {
                     child: TabBar(
 //            controller: TabController(length: 2, vsync: this),
                       tabs: <Tab>[
-                        Tab(text: kMessages),
-                        Tab(text: kNotifications)
+                        Tab(
+                            text: AppLocalizations.of(context)
+                                .translate('messages')),
+                        Tab(
+                            text: AppLocalizations.of(context)
+                                .translate('notifications'))
                       ],
                       unselectedLabelColor: Colors.black54,
                       labelColor: Colors.black,

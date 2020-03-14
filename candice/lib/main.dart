@@ -6,7 +6,10 @@ import 'package:candice/screens/notifications/index.dart';
 import 'package:candice/screens/profile/index.dart';
 import 'package:candice/screens/search/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
+
+import 'models/app_localizations.dart';
 
 void main() => runApp(App());
 
@@ -21,6 +24,39 @@ class App extends StatelessWidget {
       ),
       theme: ThemeData(fontFamily: kRobotoFontFamily),
       debugShowCheckedModeBanner: false,
+      supportedLocales: <Locale>[
+        // Adding a new language for the debug in iOS need to added on info.plist https://flutter.dev/docs/development/accessibility-and-localization/internationalization#appendix-updating-the-ios-app-bundle
+        Locale('en', 'US'),
+        Locale('es', 'ES'),
+      ],
+      // These delegates make sure that the localization data for the proper language is loaded
+      localizationsDelegates: [
+        // A class which loads the translations from JSON files
+        AppLocalizations.delegate,
+        // Built-in localization of basic text for Material widgets
+        GlobalMaterialLocalizations.delegate,
+        // Built-in localization for text direction LTR/RTL
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      // Returns a locale which will be used by the app
+      localeResolutionCallback: (locale, supportedLocales) {
+        if (locale == null) return supportedLocales.first;
+        // Check if the current device locale is supported
+        for (var supportedLocale in supportedLocales) {
+          print(supportedLocale.languageCode);
+          print(locale.languageCode);
+          print(supportedLocale.countryCode);
+          print(locale.countryCode);
+          print('-----');
+          if (supportedLocale.languageCode == locale.languageCode &&
+              supportedLocale.countryCode == locale.countryCode)
+            return supportedLocale;
+        }
+        print('end');
+        // If the locale of the device is not supported, use the first one
+        // from the list (English, in this case).
+        return supportedLocales.first;
+      },
     );
   }
 }

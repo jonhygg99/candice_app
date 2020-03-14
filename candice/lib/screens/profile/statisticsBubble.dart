@@ -1,6 +1,7 @@
 import 'package:candice/common/numberFormat.dart';
 import 'package:candice/constants/measures.dart';
 import 'package:candice/constants/texts.dart';
+import 'package:candice/models/app_localizations.dart';
 import 'package:candice/screens/profile/socialMediaBubbles.dart';
 import 'package:flutter/material.dart';
 
@@ -32,11 +33,18 @@ class StatisticsBubble extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                StatisticsNumbers(number: uploads, title: kUploads),
+                StatisticsNumbers(
+                    number: uploads,
+                    title: AppLocalizations.of(context).translate('posts')),
                 const SizedBox(width: kBigSeparation),
-                StatisticsNumbers(number: reproductions, title: kReproductions),
+                StatisticsNumbers(
+                    number: reproductions,
+                    title: AppLocalizations.of(context)
+                        .translate('reproductions')),
                 const SizedBox(width: kBigSeparation),
-                StatisticsNumbers(number: hearts, title: kHearts),
+                StatisticsNumbers(
+                    number: hearts,
+                    title: AppLocalizations.of(context).translate('hearts')),
               ],
             ),
             const SizedBox(height: kCommonSeparation),

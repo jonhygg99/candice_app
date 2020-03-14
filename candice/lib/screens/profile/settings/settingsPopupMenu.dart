@@ -1,4 +1,5 @@
 import 'package:candice/constants/texts.dart';
+import 'package:candice/models/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class SettingsPopupMenu extends StatelessWidget {
@@ -13,8 +14,12 @@ class SettingsPopupMenu extends StatelessWidget {
       onSelected: (value) => Navigator.push(context,
           MaterialPageRoute(builder: (context) => kScreenSettings[value])),
       itemBuilder: (context) => [
-        PopupMenuItem(child: Text(kEditProfile), value: kEditProfileValue),
-        PopupMenuItem(child: Text(kAboutUs), value: kAboutUsValue),
+        PopupMenuItem(
+            child: Text(AppLocalizations.of(context).translate('editProfile')),
+            value: kEditProfileValue),
+        PopupMenuItem(
+            child: Text(AppLocalizations.of(context).translate('aboutUs')),
+            value: kAboutUsValue),
       ],
     );
   }

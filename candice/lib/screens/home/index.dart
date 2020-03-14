@@ -1,6 +1,6 @@
 import 'package:candice/constants/colors.dart';
-import 'package:candice/constants/texts.dart';
 import 'package:candice/constants/typography.dart';
+import 'package:candice/models/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 import 'post/posts.dart';
@@ -25,7 +25,10 @@ class Home extends StatelessWidget {
                   TextStyle(color: kPink, fontFamily: kPacifico, fontSize: 24),
             ),
             bottom: TabBar(
-              tabs: [Tab(text: kFollowing), Tab(text: kTrending)],
+              tabs: [
+                Tab(text: AppLocalizations.of(context).translate('following')),
+                Tab(text: AppLocalizations.of(context).translate('trending'))
+              ],
               unselectedLabelColor: Colors.black54,
               labelColor: kPink,
               unselectedLabelStyle: kBigBoldText,

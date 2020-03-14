@@ -1,7 +1,7 @@
 import 'package:candice/constants/colors.dart';
 import 'package:candice/constants/measures.dart';
-import 'package:candice/constants/texts.dart';
 import 'package:candice/constants/typography.dart';
+import 'package:candice/models/app_localizations.dart';
 import 'package:candice/models/user/post.dart';
 import 'package:flutter/material.dart';
 
@@ -31,7 +31,10 @@ class TabBarNavigation extends StatelessWidget {
               ),
               child: TabBar(
 //            controller: TabController(length: 2, vsync: this),
-                tabs: <Tab>[Tab(text: kArtwork), Tab(text: kPastJobs)],
+                tabs: <Tab>[
+                  Tab(text: AppLocalizations.of(context).translate('artwork')),
+                  Tab(text: AppLocalizations.of(context).translate('pastJobs'))
+                ],
                 unselectedLabelColor: Colors.black54,
                 labelColor: Colors.black,
                 unselectedLabelStyle: kBoldText,

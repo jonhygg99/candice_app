@@ -1,8 +1,8 @@
 import 'package:candice/common/profileImage.dart';
 import 'package:candice/constants/colors.dart';
 import 'package:candice/constants/measures.dart';
-import 'package:candice/constants/texts.dart';
 import 'package:candice/constants/typography.dart';
+import 'package:candice/models/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class MainBubble extends StatelessWidget {
@@ -67,13 +67,15 @@ class MainBubble extends StatelessWidget {
             Row(
               children: <Widget>[
                 ActionButton(
-                    title: kPlaySongs,
+                    title: AppLocalizations.of(context).translate('playSongs'),
                     color: kLightBlue,
                     action: () {},
                     format: false),
                 const SizedBox(width: kCommonSeparation),
                 ActionButton(
-                  title: isFollowing ? kImFan : kBeFan,
+                  title: isFollowing
+                      ? AppLocalizations.of(context).translate('imFan')
+                      : AppLocalizations.of(context).translate('beFan'),
                   color: kPink,
                   format: !isFollowing,
                   action: () {},

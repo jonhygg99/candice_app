@@ -15,24 +15,25 @@ class BubbleNotificationSortDesign extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(right: kSmallSeparation),
       child: InkWell(
-          borderRadius: BorderRadius.all(kBorderRadiusCircle),
-          onTap: action,
-          child: Container(
-            padding: kPaddingBubbleNotificationSort,
-            decoration: BoxDecoration(
-                color: active ? kPink : Colors.white,
-                border:
-                    Border.all(width: 3, color: active ? kPink : Colors.black),
-                borderRadius: BorderRadius.all(kBorderRadiusCircle)),
-            child: Text(
-              title,
-              style: TextStyle(
-                color: active ? Colors.white : Colors.black,
-                fontFamily: kRobotoBold,
-                fontWeight: FontWeight.bold,
-              ),
+        borderRadius: BorderRadius.all(kBorderRadiusCircle),
+        onTap: action,
+        child: Container(
+          padding: kPaddingBubbleNotificationSort,
+          decoration: BoxDecoration(
+              color: active ? kPink : Colors.white,
+              border:
+                  Border.all(width: 3, color: active ? kPink : Colors.black),
+              borderRadius: BorderRadius.all(kBorderRadiusCircle)),
+          child: Text(
+            title,
+            style: TextStyle(
+              color: active ? Colors.white : Colors.black,
+              fontFamily: kRobotoBold,
+              fontWeight: FontWeight.bold,
             ),
-          )),
+          ),
+        ),
+      ),
     );
   }
 }

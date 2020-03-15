@@ -43,6 +43,8 @@ const EdgeInsets kPaddingButton =
     EdgeInsets.symmetric(horizontal: kCommonSeparation, vertical: 8.0);
 const EdgeInsets kPaddingBubbleNotificationSort = EdgeInsets.symmetric(
     horizontal: kCommonSeparation, vertical: kTinySeparation);
+const EdgeInsets kPaddingBubbleAddPost = EdgeInsets.symmetric(
+    horizontal: kCommonSeparation, vertical: kTinySeparation);
 const EdgeInsets kPaddingStory = EdgeInsets.only(
     left: kBigSeparation,
     top: kCommonSeparation,

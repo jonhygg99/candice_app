@@ -43,16 +43,10 @@ class App extends StatelessWidget {
         if (locale == null) return supportedLocales.first;
         // Check if the current device locale is supported
         for (var supportedLocale in supportedLocales) {
-          print(supportedLocale.languageCode);
-          print(locale.languageCode);
-          print(supportedLocale.countryCode);
-          print(locale.countryCode);
-          print('-----');
           if (supportedLocale.languageCode == locale.languageCode &&
               supportedLocale.countryCode == locale.countryCode)
             return supportedLocale;
         }
-        print('end');
         // If the locale of the device is not supported, use the first one
         // from the list (English, in this case).
         return supportedLocales.first;
@@ -73,7 +67,7 @@ class _NavigationBarState extends State<NavigationBar> {
   bool openMusicTab = false;
   bool showMusicTab = false;
   bool playMusic = false;
-  int index = 3;
+  int index = 1;
   List<Widget> screens;
 
   @override

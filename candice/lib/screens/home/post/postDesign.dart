@@ -126,7 +126,7 @@ class PostDesign extends StatelessWidget {
                         ),
                         const SizedBox(height: kSmallSeparation),
                         Text(
-                          '42 min ago', // TODO: time - time
+                          '42 min ago', // TODO: time - time and translation support
                           style: TextStyle(color: Colors.black54),
                         )
                       ],

@@ -47,7 +47,7 @@ class MainBubble extends StatelessWidget {
                     ),
                     const SizedBox(height: kTinySeparation),
                     Text(
-                      profession,
+                      profession, // TODO: translation support
                       style: const TextStyle(
                           fontSize: 14.0,
                           fontWeight: FontWeight.bold,

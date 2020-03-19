@@ -36,6 +36,8 @@ dependencies:
 # video player
   video_player: ^0.10.8+1
   chewie: ^0.9.7
+# launch icon faster -> command flutter pub run flutter_launcher_icons:main
+  flutter_launcher_icons: ^0.7.4
 
 # language support
   flutter_localizations:
@@ -44,6 +46,11 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+flutter_icons: # launch icon faster
+  android: true
+  ios: true
+  image_path: "assets/icon/icon.png"
 
 
 flutter:

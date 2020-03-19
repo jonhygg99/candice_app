@@ -3,6 +3,8 @@ import 'package:candice/constants/colors.dart';
 import 'package:candice/constants/measures.dart';
 import 'package:flutter/material.dart';
 
+import 'StoryVideoPostDesign.dart';
+
 class StoryDesign extends StatelessWidget {
   StoryDesign({@required this.profilePic, this.withPadding = false});
   final String profilePic;
@@ -19,7 +21,10 @@ class StoryDesign extends StatelessWidget {
               bottom: kCommonSeparation)
           : const EdgeInsets.all(0.0),
       child: InkWell(
-        onTap: () => print('profile bubble tapped'),
+        onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => StoryVideoPostDesign()),
+        ),
         borderRadius: BorderRadius.all(Radius.circular(35.0)),
         child: Container(
           decoration: BoxDecoration(

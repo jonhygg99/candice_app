@@ -5,23 +5,19 @@ import 'package:video_player/video_player.dart';
 class Search extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChewieListItem(
-      url:
-          'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-    );
+    return Container(color: Colors.white, child: Center(child: Text('Search')));
   }
 }
 
 class ChewieListItem extends StatefulWidget {
-  // This will contain the URL/asset path which we want to play
-  final String url;
-  final bool looping;
-
   ChewieListItem({
     @required this.url,
     this.looping,
     Key key,
   }) : super(key: key);
+
+  final String url;
+  final bool looping;
 
   @override
   _ChewieListItemState createState() => _ChewieListItemState();
@@ -33,7 +29,9 @@ class _ChewieListItemState extends State<ChewieListItem> {
 
   @override
   void initState() {
-    _videoPlayerController = VideoPlayerController.network(widget.url);
+    _videoPlayerController =
+        VideoPlayerController.asset('assets/sample/storySample.mp4');
+//    _videoPlayerController = VideoPlayerController.network(widget.url);
     _chewieController = ChewieController(
       videoPlayerController: _videoPlayerController,
       aspectRatio: 1,
@@ -46,6 +44,7 @@ class _ChewieListItemState extends State<ChewieListItem> {
 
       errorBuilder: (context, errorMessage) {
         return Center(
+          // TODO: next video
           child: Icon(
             Icons.error,
             color: Colors.white,

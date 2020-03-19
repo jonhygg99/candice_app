@@ -49,6 +49,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - assets/sample/storySample.mp4 # TODO: remove
     - assets/languages/en.json
     - assets/languages/es.json
   fonts:

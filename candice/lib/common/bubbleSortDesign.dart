@@ -20,16 +20,11 @@ class BubbleSortDesign extends StatelessWidget {
           padding: kPaddingBubbleNotificationSort,
           decoration: BoxDecoration(
             color: active ? kPink : Colors.black54,
-//            border: Border.all(width: 3, color: active ? kPink : Colors.black),
             borderRadius: BorderRadius.all(kBorderRadiusCircle),
           ),
           child: Text(
             title,
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: kRobotoBold,
-              fontWeight: FontWeight.bold,
-            ),
+            style: kWhiteBoldText,
           ),
         ),
       ),

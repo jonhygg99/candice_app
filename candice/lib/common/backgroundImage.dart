@@ -32,8 +32,10 @@ class BackgroundImage extends StatelessWidget {
     if (height == kPostPreviewBackgroundImageHeight)
       return MediaQuery.of(context).size.width / 2 -
           (kMediumSeparation + kMediumSeparation);
-    else
+    else if (height == kBackgroundImageHeight)
       return MediaQuery.of(context).size.width;
+    else
+      return height;
   }
 
   BorderRadius _buildBorderRadius() {

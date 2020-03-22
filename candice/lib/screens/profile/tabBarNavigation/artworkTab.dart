@@ -11,7 +11,9 @@ class ArtworkTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Wrap(
+        spacing: kSmallSeparation,
+        runSpacing: kSmallSeparation,
         children: _buildPosts() ?? Text('This user hasn\'t upload any post'));
   }
 
@@ -19,34 +21,10 @@ class ArtworkTab extends StatelessWidget {
     List<Widget> widgets = [];
 
     for (int i = 0; i < posts.length; ++i) {
-      if (i + 1 < posts.length) {
-        widgets.add(Row(
-          children: <Widget>[
-            PostPreviewDesign(
-              title: posts[i].title,
-              backgroundImage: posts[i].backgroundImage,
-            ),
-            const SizedBox(width: kSmallSeparation),
-            PostPreviewDesign(
-              title: posts[i + 1].title,
-              backgroundImage: posts[i + 1].backgroundImage,
-            )
-          ],
-        ));
-        ++i;
-      } else {
-        widgets.add(
-          Row(
-            children: <Widget>[
-              PostPreviewDesign(
-                title: posts[i].title,
-                backgroundImage: posts[i].backgroundImage,
-              ),
-            ],
-          ),
-        );
-      }
-      widgets.add(const SizedBox(height: kSmallSeparation));
+      widgets.add(PostPreviewDesign(
+        title: posts[i].title,
+        backgroundImage: posts[i].backgroundImage,
+      ));
     }
     return widgets;
   }

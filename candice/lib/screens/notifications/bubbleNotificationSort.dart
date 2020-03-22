@@ -1,5 +1,6 @@
 import 'package:candice/models/appState.dart';
 import 'package:candice/models/app_localizations.dart';
+import 'package:candice/models/enum.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,18 +16,23 @@ class BubbleNotificationSort extends StatelessWidget {
         children: <BubbleSortDesign>[
           BubbleSortDesign(
             title: AppLocalizations.of(context).translate('likes'),
-            action: () => appState.reverseNotificationBubbleState(0),
-            active: appState.notificationBubbleState[0],
+            action: () => appState
+                .reverseNotificationBubbleState(NotificationBubble.Likes),
+            active: appState.notificationBubbleState[NotificationBubble.Likes],
           ),
           BubbleSortDesign(
             title: AppLocalizations.of(context).translate('comments'),
-            action: () => appState.reverseNotificationBubbleState(1),
-            active: appState.notificationBubbleState[1],
+            action: () => appState
+                .reverseNotificationBubbleState(NotificationBubble.Comments),
+            active:
+                appState.notificationBubbleState[NotificationBubble.Comments],
           ),
           BubbleSortDesign(
             title: AppLocalizations.of(context).translate('mentions'),
-            action: () => appState.reverseNotificationBubbleState(2),
-            active: appState.notificationBubbleState[2],
+            action: () => appState
+                .reverseNotificationBubbleState(NotificationBubble.Mentions),
+            active:
+                appState.notificationBubbleState[NotificationBubble.Mentions],
           ),
         ],
       ),

@@ -29,7 +29,7 @@ class Notifications extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   Container(
-                    padding: EdgeInsets.all(5.0),
+                    padding: EdgeInsets.all(kTinySeparation),
                     decoration: BoxDecoration(
                       color: kLightGrey,
                       borderRadius: BorderRadius.all(

@@ -49,9 +49,13 @@ class TabBarNavigation extends StatelessWidget {
             ),
             const SizedBox(height: kCommonSeparation),
             SizedBox(
-                height: 500, // TODO: depends on how many or try to do Expand
-                child:
-                    TabBarView(children: [ArtworkTab(posts), PastJobsTab()])),
+              // TODO: depends on how many or try to do Expand
+              height: 500,
+              child: TabBarView(children: [
+                ArtworkTab(posts),
+                PastJobsTab(),
+              ]),
+            ),
           ],
         ),
       ),

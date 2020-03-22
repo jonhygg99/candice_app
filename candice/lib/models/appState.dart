@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 
+import 'enum.dart';
 import 'user/currentUser.dart';
 import 'user/lastUser.dart';
 
@@ -16,11 +17,29 @@ class AppState extends ChangeNotifier {
     currentUser.fetchUser(0);
   }
 
-  // Notifications
-  List<bool> notificationBubbleState = [true, true, true];
+  // Search Screen
+  Map<SearchBubble, bool> searchBubbleState = {
+    SearchBubble.Home: true,
+    SearchBubble.TrendingArtists: false,
+    SearchBubble.Events: false,
+    SearchBubble.Castings: false,
+  };
 
-  void reverseNotificationBubbleState(int index) {
-    notificationBubbleState[index] = !notificationBubbleState[index];
+  void reverseSearchBubbleState(SearchBubble category) {
+    searchBubbleState.forEach((key, value) => searchBubbleState[key] = false);
+    searchBubbleState[category] = true;
+    notifyListeners();
+  }
+
+  // Notifications Screen
+  Map<NotificationBubble, bool> notificationBubbleState = {
+    NotificationBubble.Likes: true,
+    NotificationBubble.Comments: true,
+    NotificationBubble.Mentions: true
+  };
+
+  void reverseNotificationBubbleState(NotificationBubble category) {
+    notificationBubbleState[category] = !notificationBubbleState[category];
     notifyListeners();
   }
 

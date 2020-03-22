@@ -3,6 +3,7 @@ import 'package:candice/screens/profile/settings/editProfile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+const String kCandice = 'Candice';
 // PROFILE SCREEN
 // PopupMenuButton
 const String kEditProfile = 'Edit profile';

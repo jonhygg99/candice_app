@@ -1,4 +1,5 @@
 import 'package:candice/constants/colors.dart';
+import 'package:candice/constants/texts.dart';
 import 'package:candice/constants/typography.dart';
 import 'package:candice/models/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -20,9 +21,8 @@ class Home extends StatelessWidget {
             elevation: 0,
             backgroundColor: Colors.white,
             title: Text(
-              'Candice',
-              style:
-                  TextStyle(color: kPink, fontFamily: kPacifico, fontSize: 24),
+              kCandice,
+              style: kLogoText,
             ),
             bottom: TabBar(
               tabs: [

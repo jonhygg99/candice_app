@@ -31,12 +31,7 @@ class PostDesign extends StatelessWidget {
                   left: kCommonSeparation,
                   child: Text(
                     'Break my soul',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24.0,
-                      fontFamily: kRobotoBold,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: kBigWhiteBoldText,
                   ),
                 ),
                 Positioned(
@@ -117,10 +112,7 @@ class PostDesign extends StatelessWidget {
                         InkWell(
                           child: Text(
                             'Julie Howard',
-                            style: TextStyle(
-                                fontSize: 18.0,
-                                fontFamily: kRobotoBold,
-                                fontWeight: FontWeight.bold),
+                            style: kMediumBoldText,
                           ),
                           onTap: () => goToUserProfile(context, appState, '1'),
                         ),

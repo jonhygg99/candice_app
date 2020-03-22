@@ -1,5 +1,5 @@
 import 'package:intl/intl.dart';
 
-String numberFormat(int nb) {
+String numberFormat(dynamic nb) {
   return NumberFormat.compact().format(nb);
 }

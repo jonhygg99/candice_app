@@ -70,11 +70,7 @@ class AddPostDesignButton extends StatelessWidget {
             child: Center(
               child: Text(
                 title,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontFamily: kRobotoBold,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24.0),
+                style: kBigWhiteBoldText,
               ),
             ),
           ),

@@ -1,11 +1,16 @@
 import 'package:candice/common/backgroundImage.dart';
+import 'package:candice/common/bubbleSortDesign.dart';
+import 'package:candice/constants/colors.dart';
 import 'package:candice/constants/measures.dart';
 import 'package:candice/constants/typography.dart';
+import 'package:candice/models/app_localizations.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:video_player/video_player.dart';
 
 import 'bubbleSearchSort.dart';
+import 'hotThisWeek.dart';
 
 class Search extends StatelessWidget {
   @override
@@ -34,94 +39,128 @@ class HomeSearch extends StatelessWidget {
       padding: const EdgeInsets.only(left: kCommonSeparation),
       child: Wrap(
         runSpacing: kCommonSeparation,
-        children: <Widget>[HotThisWeek(), Text('No move please')],
+        children: <Widget>[HotThisWeek(), EventsNearYou()],
       ),
     );
   }
 }
 
-class HotThisWeek extends StatelessWidget {
+class EventsNearYou extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Wrap(
+      runSpacing: kCommonSeparation,
       children: <Widget>[
-        Text('Hot this week', style: kBigBoldText),
-        const SizedBox(height: kCommonSeparation),
-        HotThisWeekPostPreview()
+        Text(
+          AppLocalizations.of(context).translate('eventsNearYou'),
+          style: kBigBoldText,
+        ),
+        Wrap(runSpacing: kTinySeparation, children: [
+          EventCard(type: 'Concert', price: 8.95),
+          EventCard(type: 'Jam session', price: 0),
+          EventCard(type: 'Battle', price: 4.99),
+        ]),
+        Center(child: Text('View more...', style: kMediumPinkBoldText))
       ],
     );
   }
 }
 
-class HotThisWeekPostPreview extends StatelessWidget {
+class EventCard extends StatelessWidget {
+  const EventCard({@required this.type, this.price = 0.0});
+  final String type;
+  final double price;
+
   @override
   Widget build(BuildContext context) {
-    List<Map> hotBackgrounds = [
-      {
-        'backgroundImage':
-            'https://images.unsplash.com/photo-1577644036183-94ce86392140?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1236&q=80',
-        'song': 'Call me never',
-        'profileName': 'Courtney Nguyen'
-      },
-      {
-        'backgroundImage':
-            'https://images.unsplash.com/photo-1546934469-0659d570f44e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80',
-        'song': 'Black in the dark',
-        'profileName': 'Wade Richards'
-      },
-      {
-        'backgroundImage':
-            'https://images.unsplash.com/photo-1577644036183-94ce86392140?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1236&q=80',
-        'song': 'Blue is power',
-        'profileName': 'Jake Richards'
-      },
-    ];
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Wrap(
-        spacing: kSmallSeparation,
-        children: buildHotThisWeekPostPreview(hotBackgrounds),
+    return Padding(
+      padding: const EdgeInsets.only(right: kCommonSeparation),
+      child: Card(
+        clipBehavior: Clip.hardEdge,
+        shape: RoundedRectangleBorder(borderRadius: kBorderRadiusCircular),
+        elevation: kElevation,
+        child: Row(
+          children: <Widget>[
+            BackgroundImage(
+              backgroundImage:
+                  'https://images.unsplash.com/photo-1584029246365-f52f94406082?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1253&q=80',
+              height: kSizePhotoEventsNearYou,
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width -
+                  kSizePhotoEventsNearYou -
+                  (kCommonSeparation * 2) -
+                  kSmallSeparation,
+              height: kSizePhotoEventsNearYou,
+              child: Stack(
+                children: <Widget>[
+                  Positioned(
+                    right: kSmallSeparation,
+                    top: kSmallSeparation,
+                    child: BubbleSortDesign(
+                      title: getTranslation(context),
+                      color: getColor(),
+                    ),
+                  ),
+                  Positioned(
+                    left: kCommonSeparation,
+                    top: kSizePhotoEventsNearYou / 3,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text('Marvin Murphy', style: kMediumBoldText),
+                        const SizedBox(height: kTinySeparation),
+                        Row(
+                          children: <Widget>[
+                            Icon(Icons.location_on),
+                            Text('Apolo, Barcelona')
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                  Positioned(
+                    right: kSmallSeparation,
+                    bottom: kSmallSeparation,
+                    child: BubbleSortDesign(
+                      title: price == 0
+                          ? 'Free'
+                          : NumberFormat.compactCurrency(
+                                  symbol: '€') // TODO: need to improve
+                              .format(price),
+                      color: kGrey,
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
 
-  List<Stack> buildHotThisWeekPostPreview(List<Map> hotBackgrounds) {
-    List<Stack> widgets = [];
+  Color getColor() {
+    if (type == 'Concert')
+      return kGreen;
+    else if (type == 'Jam session')
+      return kPurple;
+    else if (type == 'Battle')
+      return kRed;
+    else
+      return kLightBlue;
+  }
 
-    hotBackgrounds.forEach((hot) {
-      widgets.add(Stack(children: <Widget>[
-        BackgroundImage(
-          backgroundImage: hot['backgroundImage'],
-          height: kSizePhotoHotThisWeek,
-        ),
-        Positioned(
-          left: 10,
-          bottom: 40,
-          child: Container(
-            width: kSizePhotoHotThisWeek - 15,
-            child: Text(
-              hot['song'],
-              overflow: TextOverflow.ellipsis,
-              style: kMediumWhiteBoldText,
-            ),
-          ),
-        ),
-        Positioned(
-          left: 10,
-          bottom: 15,
-          child: Container(
-            width: kSizePhotoHotThisWeek - 15,
-            child: Text(
-              hot['profileName'],
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-        )
-      ]));
-    });
-    return widgets;
+  String getTranslation(context) {
+    if (type == 'Concert')
+      return AppLocalizations.of(context).translate('concert');
+    else if (type == 'Jam session')
+      return AppLocalizations.of(context).translate('jamSession');
+    else if (type == 'Battle')
+      return AppLocalizations.of(context).translate('battle');
+    else
+      return 'Unkown';
   }
 }
 

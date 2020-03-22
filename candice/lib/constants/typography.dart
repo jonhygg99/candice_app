@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 
+import 'colors.dart';
+
 const String kRobotoFontFamily = 'Roboto';
 const String kRobotoBold = 'Roboto-Bold';
 const String kPacifico = 'Pacifico';
+
+const TextStyle kLogoText = TextStyle(
+  color: kPink,
+  fontFamily: kPacifico,
+  fontSize: 24,
+);
 
 const TextStyle kBoldText = TextStyle(
   fontWeight: FontWeight.bold,
@@ -15,12 +23,6 @@ const TextStyle kWhiteBoldText = TextStyle(
   fontFamily: kRobotoBold,
 );
 
-const TextStyle kBigBoldText = TextStyle(
-  fontSize: 24.0,
-  fontFamily: kRobotoBold,
-  fontWeight: FontWeight.bold,
-);
-
 const TextStyle kMediumBoldText = TextStyle(
   fontSize: 18.0,
   fontWeight: FontWeight.bold,
@@ -30,6 +32,26 @@ const TextStyle kMediumBoldText = TextStyle(
 const TextStyle kMediumWhiteBoldText = TextStyle(
   color: Colors.white,
   fontSize: 18.0,
+  fontFamily: kRobotoBold,
+  fontWeight: FontWeight.bold,
+);
+
+const TextStyle kMediumPinkBoldText = TextStyle(
+  color: kPink,
+  fontSize: 18.0,
+  fontFamily: kRobotoBold,
+  fontWeight: FontWeight.bold,
+);
+
+const TextStyle kBigBoldText = TextStyle(
+  fontSize: 24.0,
+  fontFamily: kRobotoBold,
+  fontWeight: FontWeight.bold,
+);
+
+const TextStyle kBigWhiteBoldText = TextStyle(
+  color: Colors.white,
+  fontSize: 24.0,
   fontFamily: kRobotoBold,
   fontWeight: FontWeight.bold,
 );

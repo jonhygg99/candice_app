@@ -46,11 +46,7 @@ class BubbleMessageDesign extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     userName,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontFamily: kRobotoBold,
-                      fontSize: 18.0,
-                    ),
+                    style: kMediumBoldText,
                   ),
                   const SizedBox(height: kMediumSeparation),
                   Container(
@@ -72,10 +68,7 @@ class BubbleMessageDesign extends StatelessWidget {
                         child: Center(
                           child: Text(
                             newMessages.toString(),
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: kRobotoBold,
-                                fontWeight: FontWeight.bold),
+                            style: kWhiteBoldText,
                           ),
                         ),
                       ),

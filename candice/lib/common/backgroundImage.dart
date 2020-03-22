@@ -47,6 +47,9 @@ class BackgroundImage extends StatelessWidget {
     else if (kPostBackgroundImageHeight == height)
       return const BorderRadius.only(
           topLeft: kRadiusCircular, topRight: kRadiusCircular);
+    else if (kSizePhotoEventsNearYou == height)
+      return const BorderRadius.only(
+          topLeft: kRadiusCircular, bottomLeft: kRadiusCircular);
     else
       return const BorderRadius.all(Radius.circular(kRadius));
   }

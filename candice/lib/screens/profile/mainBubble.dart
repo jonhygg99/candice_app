@@ -49,7 +49,6 @@ class MainBubble extends StatelessWidget {
                     Text(
                       profession, // TODO: translation support
                       style: const TextStyle(
-                          fontSize: 14.0,
                           fontWeight: FontWeight.bold,
                           color: Colors.black54,
                           fontFamily: kRobotoBold),

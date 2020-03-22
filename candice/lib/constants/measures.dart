@@ -20,6 +20,7 @@ const double kTabBarSeparation = 40.0;
 const double kSizePhotoProfile = 80.0;
 const double kSizePhotoProfileStory = 70.0;
 const double kSizePhotoHotThisWeek = 180.0;
+const double kSizePhotoEventsNearYou = 150.0;
 const double kSizePhotoProfileReviews = 70.0;
 const double kSizePhotoProfileMessages = 70.0;
 const double kBackgroundImageHeight = 350.0;

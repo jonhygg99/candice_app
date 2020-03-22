@@ -60,8 +60,10 @@ class Notifications extends StatelessWidget {
                   ),
                   const SizedBox(height: kCommonSeparation),
                   Expanded(
-                    child: TabBarView(
-                        children: [MessagesTab(), NotificationsTab()]),
+                    child: TabBarView(children: [
+                      MessagesTab(),
+                      NotificationsTab(),
+                    ]),
                   ),
                 ],
               ),

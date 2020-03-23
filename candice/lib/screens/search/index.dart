@@ -1,5 +1,6 @@
 import 'package:candice/common/backgroundImage.dart';
 import 'package:candice/common/bubbleSortDesign.dart';
+import 'package:candice/common/searchTextField.dart';
 import 'package:candice/constants/colors.dart';
 import 'package:candice/constants/measures.dart';
 import 'package:candice/constants/typography.dart';
@@ -13,18 +14,29 @@ import 'bubbleSearchSort.dart';
 import 'hotThisWeek.dart';
 
 class Search extends StatelessWidget {
+  Future<Null> _refreshSearch() async {}
+
   @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.grey,
       child: SafeArea(
         child: Scaffold(
-          body: ListView(
-            children: <Widget>[
-              BubbleSearchSort(),
-              const SizedBox(height: kCommonSeparation),
-              HomeSearch()
-            ],
+          body: RefreshIndicator(
+            onRefresh: _refreshSearch, // TODO: call to fetch the search
+            child: ListView(
+              children: <Widget>[
+                const SizedBox(height: kCommonSeparation),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: kCommonSeparation),
+                  child: SearchTextField(),
+                ),
+                BubbleSearchSort(),
+                const SizedBox(height: kCommonSeparation),
+                HomeSearch()
+              ],
+            ),
           ),
         ),
       ),
@@ -60,7 +72,9 @@ class EventsNearYou extends StatelessWidget {
           EventCard(type: 'Jam session', price: 0),
           EventCard(type: 'Battle', price: 4.99),
         ]),
-        Center(child: Text('View more...', style: kMediumPinkBoldText))
+        Center(
+            child: Text(AppLocalizations.of(context).translate('viewMore'),
+                style: kMediumPinkBoldText))
       ],
     );
   }
@@ -125,7 +139,7 @@ class EventCard extends StatelessWidget {
                     bottom: kSmallSeparation,
                     child: BubbleSortDesign(
                       title: price == 0
-                          ? 'Free'
+                          ? AppLocalizations.of(context).translate('free')
                           : NumberFormat.compactCurrency(
                                   symbol: '€') // TODO: need to improve
                               .format(price),

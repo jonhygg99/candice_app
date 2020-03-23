@@ -11,12 +11,12 @@ class BubbleSearchSort extends StatelessWidget {
   Widget build(BuildContext context) {
     final appState = Provider.of<AppState>(context, listen: true);
     return Padding(
-      padding: const EdgeInsets.only(top: kBigSeparation),
+      padding: const EdgeInsets.only(top: kCommonSeparation),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
           children: <Widget>[
-            const SizedBox(width: kBigSeparation),
+            const SizedBox(width: kCommonSeparation),
             BubbleSortDesign(
               title: AppLocalizations.of(context).translate('home'),
               action: () =>

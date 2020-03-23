@@ -9,14 +9,19 @@ class NotificationsTab extends StatefulWidget {
 }
 
 class _NotificationsTabState extends State<NotificationsTab> {
+  Future<Null> _refreshNotifications() async {}
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        BubbleNotificationSort(),
-        const SizedBox(height: kCommonSeparation),
-        Text('down')
-      ],
+    return RefreshIndicator(
+      onRefresh: _refreshNotifications, // TODO: call to fetch the notification
+      child: ListView(
+        children: <Widget>[
+          BubbleNotificationSort(),
+          const SizedBox(height: kCommonSeparation),
+          Text('down')
+        ],
+      ),
     );
   }
 }

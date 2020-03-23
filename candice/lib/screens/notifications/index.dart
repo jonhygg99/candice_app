@@ -40,11 +40,13 @@ class Notifications extends StatelessWidget {
 //            controller: TabController(length: 2, vsync: this),
                       tabs: <Tab>[
                         Tab(
-                            text: AppLocalizations.of(context)
-                                .translate('messages')),
+                          text: AppLocalizations.of(context)
+                              .translate('messages'),
+                        ),
                         Tab(
-                            text: AppLocalizations.of(context)
-                                .translate('notifications'))
+                          text: AppLocalizations.of(context)
+                              .translate('notifications'),
+                        )
                       ],
                       unselectedLabelColor: Colors.black54,
                       labelColor: Colors.black,
@@ -58,7 +60,7 @@ class Notifications extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(height: kCommonSeparation),
+                  const SizedBox(height: kMediumSeparation),
                   Expanded(
                     child: TabBarView(children: [
                       MessagesTab(),

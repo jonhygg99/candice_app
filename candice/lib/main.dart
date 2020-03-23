@@ -5,6 +5,7 @@ import 'package:candice/screens/home/index.dart';
 import 'package:candice/screens/notifications/index.dart';
 import 'package:candice/screens/profile/index.dart';
 import 'package:candice/screens/search/index.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
@@ -37,6 +38,7 @@ class App extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
         // Built-in localization for text direction LTR/RTL
         GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
       ],
       // Returns a locale which will be used by the app
       localeResolutionCallback: (locale, supportedLocales) {

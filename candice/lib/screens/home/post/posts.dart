@@ -9,6 +9,12 @@ class Posts extends StatelessWidget {
       children: <PostDesign>[
         PostDesign(),
         PostDesign(),
+        PostDesign(),
+        PostDesign(),
+        PostDesign(),
+        PostDesign(),
+        PostDesign(),
+        PostDesign(),
       ],
     );
   }

@@ -7,17 +7,40 @@ import 'package:flutter/material.dart';
 import 'messagesTab.dart';
 import 'notificationsTab.dart';
 
-class Notifications extends StatelessWidget {
+class Notifications extends StatefulWidget {
+  @override
+  _NotificationsState createState() => _NotificationsState();
+}
+
+class _NotificationsState extends State<Notifications>
+    with TickerProviderStateMixin {
+  TabController _tabController;
+
+  @override
+  void initState() {
+    _tabController = TabController(length: 2, vsync: this, initialIndex: 0);
+    _tabController.addListener(() => setState(() {}));
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       // TODO: scroll
       backgroundColor: Colors.white,
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: kPink,
-        child: Icon(Icons.add),
-        onPressed: () => print(Localizations.localeOf(context)),
-      ),
+      floatingActionButton: _tabController.index == 0
+          ? FloatingActionButton(
+              backgroundColor: kPink,
+              child: Icon(Icons.add),
+              onPressed: () => print('pressed'),
+            )
+          : null,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(top: kBigSeparation),
@@ -37,7 +60,7 @@ class Notifications extends StatelessWidget {
                       ),
                     ),
                     child: TabBar(
-//            controller: TabController(length: 2, vsync: this),
+                      controller: _tabController,
                       tabs: <Tab>[
                         Tab(
                           text: AppLocalizations.of(context)
@@ -62,7 +85,7 @@ class Notifications extends StatelessWidget {
                   ),
                   const SizedBox(height: kMediumSeparation),
                   Expanded(
-                    child: TabBarView(children: [
+                    child: TabBarView(controller: _tabController, children: [
                       MessagesTab(),
                       NotificationsTab(),
                     ]),

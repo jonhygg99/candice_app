@@ -47,11 +47,18 @@ const EdgeInsets kPaddingBubbleNotificationSort = EdgeInsets.symmetric(
     horizontal: kCommonSeparation, vertical: kTinySeparation);
 const EdgeInsets kPaddingBubbleAddPost = EdgeInsets.symmetric(
     horizontal: kCommonSeparation, vertical: kTinySeparation);
-const EdgeInsets kPaddingStory = EdgeInsets.only(
-    left: kBigSeparation,
-    top: kCommonSeparation,
-    right: kMediumSeparation / 2,
-    bottom: kCommonSeparation);
+const EdgeInsets kPaddingAddStory = EdgeInsets.only(
+  left: kBigSeparation,
+  top: 0,
+  right: kMediumSeparation / 2,
+  bottom: kCommonSeparation,
+);
+const EdgeInsets kPaddingPeopleStory = EdgeInsets.only(
+  left: kMediumSeparation / 2,
+  top: 0,
+  right: kMediumSeparation / 2,
+  bottom: kCommonSeparation,
+);
 
 // Margin
 const kMarginCard = EdgeInsets.symmetric(horizontal: kMediumSeparation);

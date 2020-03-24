@@ -6,7 +6,7 @@ class AddStory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: kPaddingStory,
+      padding: kPaddingAddStory,
       child: InkWell(
         onTap: () => print('profile bubble tapped'),
         borderRadius: BorderRadius.all(Radius.circular(35.0)),

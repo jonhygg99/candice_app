@@ -13,13 +13,7 @@ class StoryDesign extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: withPadding
-          ? const EdgeInsets.only(
-              left: kMediumSeparation / 2,
-              top: kCommonSeparation,
-              right: kMediumSeparation / 2,
-              bottom: kCommonSeparation)
-          : const EdgeInsets.all(0.0),
+      padding: withPadding ? kPaddingPeopleStory : const EdgeInsets.all(0.0),
       child: InkWell(
         onTap: () => Navigator.push(
           context,

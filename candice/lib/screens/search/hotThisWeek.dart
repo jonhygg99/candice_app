@@ -57,7 +57,7 @@ class HotThisWeekPostPreview extends StatelessWidget {
       widgets.add(
         Stack(children: <Widget>[
           BackgroundImage(
-            backgroundImage: hot['backgroundImage'],
+            imageUrl: hot['backgroundImage'],
             height: kSizePhotoHotThisWeek,
           ),
           Positioned(

@@ -96,7 +96,7 @@ class EventCard extends StatelessWidget {
         child: Row(
           children: <Widget>[
             BackgroundImage(
-              backgroundImage:
+              imageUrl:
                   'https://images.unsplash.com/photo-1584029246365-f52f94406082?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1253&q=80',
               height: kSizePhotoEventsNearYou,
             ),

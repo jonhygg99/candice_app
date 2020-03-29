@@ -34,7 +34,7 @@ class _ProfileState extends State<Profile> {
                 Positioned(
                   top: 0,
                   child: BackgroundImage(
-                    backgroundImage: widget.user.backgroundImage,
+                    imageUrl: widget.user.backgroundImage,
                     height: kBackgroundImageHeight,
                   ),
                 ),

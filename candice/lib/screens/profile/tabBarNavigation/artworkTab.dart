@@ -43,7 +43,7 @@ class PostPreviewDesign extends StatelessWidget {
     return Stack(
       children: <Widget>[
         BackgroundImage(
-            backgroundImage: backgroundImage,
+            imageUrl: backgroundImage,
             height: kPostPreviewBackgroundImageHeight),
         Positioned(
           bottom: 12,

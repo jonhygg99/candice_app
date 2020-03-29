@@ -29,5 +29,11 @@
   "battle": "Batalla",
   "viewMore": "Ver más...",
   "search": "Buscar",
-  "free": "Gratis"
+  "free": "Gratis",
+  "username": "Nombre de usuario",
+  "description": "Descripción",
+  "addTheOptionToGetDonations": "Añadir la opción de recibir donaciones",
+  "contributionDescription": "Descripción de la contribución",
+  "profilePhoto": "Foto de perfil",
+  "backgroundPhoto": "Foto de fondo"
 }

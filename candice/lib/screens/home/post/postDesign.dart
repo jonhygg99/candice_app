@@ -22,7 +22,7 @@ class PostDesign extends StatelessWidget {
             Stack(
               children: <Widget>[
                 BackgroundImage(
-                  backgroundImage:
+                  imageUrl:
                       'https://images.unsplash.com/photo-1581289098325-fd41f57a9d4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1301&q=80',
                   height: kPostBackgroundImageHeight,
                 ),

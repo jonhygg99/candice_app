@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:candice/screens/profile/index.dart';
 import 'package:flutter/material.dart';
@@ -19,25 +21,43 @@ void goToUserProfile(context, appState, id) {
 }
 
 class PhotoProfile extends StatelessWidget {
-  PhotoProfile({@required this.imageUrl, @required this.size, this.action});
+  PhotoProfile(
+      {this.imageUrl, @required this.size, this.action, this.imageFile})
+      : assert(imageUrl != null || imageFile != null);
   final String imageUrl;
   final double size;
   final Function action;
+  final File imageFile;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: action,
-      child: ClipOval(
-        child: CachedNetworkImage(
-            imageUrl: imageUrl,
-            width: size,
-            height: size,
-            fit: BoxFit.fitWidth,
-            //placeholder: (context, url) =>
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.black,
+          borderRadius: BorderRadius.circular(50),
+        ),
+        child: ClipOval(
+          child: InkWell(
+            child: imageFile != null
+                ? Image.file(
+                    imageFile,
+                    width: size,
+                    height: size,
+                    fit: BoxFit.fitWidth,
+                  )
+                : CachedNetworkImage(
+                    imageUrl: imageUrl,
+                    width: size,
+                    height: size,
+                    fit: BoxFit.fitWidth,
+                    //placeholder: (context, url) =>
 //CircularProgressIndicator(), // TODO: logo rotate
-            errorWidget: (context, url, error) =>
-                FailPhotoProfile()), // TODO: change
+                    errorWidget: (context, url, error) =>
+                        FailPhotoProfile()), // TODO: change
+          ),
+        ),
       ),
     );
   }

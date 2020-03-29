@@ -23,6 +23,7 @@ const double kSizePhotoHotThisWeek = 180.0;
 const double kSizePhotoEventsNearYou = 150.0;
 const double kSizePhotoProfileReviews = 70.0;
 const double kSizePhotoProfileMessages = 70.0;
+const double kSizeEditBackgroundImage = 160.0;
 const double kBackgroundImageHeight = 350.0;
 const double kPostPreviewBackgroundImageHeight = 200.0;
 const double kPostBackgroundImageHeight = 400.0;

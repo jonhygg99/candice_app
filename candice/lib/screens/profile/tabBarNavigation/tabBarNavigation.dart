@@ -8,9 +8,29 @@ import 'package:flutter/material.dart';
 import 'artworkTab.dart';
 import 'pastJobsTab.dart';
 
-class TabBarNavigation extends StatelessWidget {
+class TabBarNavigation extends StatefulWidget {
   TabBarNavigation({this.posts});
   final List<Post> posts;
+
+  @override
+  _TabBarNavigationState createState() => _TabBarNavigationState();
+}
+
+class _TabBarNavigationState extends State<TabBarNavigation>
+    with TickerProviderStateMixin {
+  TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(vsync: this, length: 2);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,15 +42,15 @@ class TabBarNavigation extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Container(
-              padding: EdgeInsets.all(5.0),
+              padding: EdgeInsets.all(kTinySeparation),
               decoration: BoxDecoration(
                 color: kLightGrey,
                 borderRadius: BorderRadius.all(
-                  Radius.circular(50),
+                  kBorderRadiusCircle,
                 ),
               ),
               child: TabBar(
-//            controller: TabController(length: 2, vsync: this),
+                controller: _tabController,
                 tabs: <Tab>[
                   Tab(text: AppLocalizations.of(context).translate('artwork')),
                   Tab(text: AppLocalizations.of(context).translate('pastJobs'))
@@ -50,8 +70,8 @@ class TabBarNavigation extends StatelessWidget {
             const SizedBox(height: kCommonSeparation),
             SizedBox(
               height: 500, // TODO: depends on how many or try to do Expand
-              child: TabBarView(children: [
-                ArtworkTab(posts),
+              child: TabBarView(controller: _tabController, children: [
+                ArtworkTab(widget.posts),
                 PastJobsTab(),
               ]),
             ),

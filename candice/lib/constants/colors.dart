@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 const Color kPink = Color(0xFFDD4371);
 const Color kLightPink = Color(0xFFFF719B);
+const Color kPinkSwitch = Color(0xFFFF8CA9);
 const Color kLightBlue = Color(0xFF7495E8);
 const Color kNeonBlue = Color(0xFF26F7C5);
 const Color kGreen = Color(0xFF2FB897);

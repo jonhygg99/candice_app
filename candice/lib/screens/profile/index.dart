@@ -29,7 +29,6 @@ class _ProfileState extends State<Profile> {
         child: RefreshIndicator(
           onRefresh: _refreshProfile, // TODO: call to fetch the profile
           child: ListView(
-            physics: const AlwaysScrollableScrollPhysics(),
             children: <Widget>[
               Stack(children: <Widget>[
                 Positioned(
@@ -47,7 +46,7 @@ class _ProfileState extends State<Profile> {
                 Positioned(
                   top: 0,
                   right: 5,
-                  child: SettingsPopupMenu(),
+                  child: SettingsPopupMenu(widget.user),
                 ),
                 Column(
                   children: <Widget>[

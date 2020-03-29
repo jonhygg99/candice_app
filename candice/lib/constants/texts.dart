@@ -1,8 +1,3 @@
-import 'package:candice/screens/profile/settings/aboutUs.dart';
-import 'package:candice/screens/profile/settings/editProfile.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
 const String kCandice = 'Candice';
 // PROFILE SCREEN
 // PopupMenuButton
@@ -10,7 +5,6 @@ const String kEditProfile = 'Edit profile';
 const int kEditProfileValue = 0;
 const String kAboutUs = 'About us';
 const int kAboutUsValue = 1;
-List<Widget> kScreenSettings = [EditProfile(), AboutUs()];
 
 //Social Media
 const String kFacebook = 'Facebook';

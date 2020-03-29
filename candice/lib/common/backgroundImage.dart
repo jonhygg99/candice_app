@@ -40,8 +40,7 @@ class BackgroundImage extends StatelessWidget {
 
   BorderRadius _buildBorderRadius() {
     if (kBackgroundImageHeight == height)
-      return const BorderRadius.only(
-          bottomLeft: kRadiusCircular, bottomRight: kRadiusCircular);
+      return const BorderRadius.all(Radius.circular(0));
     else if (kPostPreviewBackgroundImageHeight == height)
       return const BorderRadius.all(Radius.circular(kRadius));
     else if (kPostBackgroundImageHeight == height)

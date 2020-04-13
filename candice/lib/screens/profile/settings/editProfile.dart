@@ -145,14 +145,15 @@ class _EditProfileState extends State<EditProfile> {
     File croppedImage = await ImageCropper.cropImage(
         sourcePath: image.path,
         androidUiSettings: AndroidUiSettings(
-            toolbarColor: kPink,
-            toolbarTitle: EditImageSection.Background == imageSection
-                ? AppLocalizations.of(context).translate('backgroundPhoto')
-                : AppLocalizations.of(context).translate('profilePhoto'),
-            toolbarWidgetColor: Colors.white,
-            hideBottomControls: true,
-            initAspectRatio: CropAspectRatioPreset.original,
-            lockAspectRatio: false),
+          toolbarColor: kPink,
+          toolbarTitle: EditImageSection.Background == imageSection
+              ? AppLocalizations.of(context).translate('backgroundPhoto')
+              : AppLocalizations.of(context).translate('profilePhoto'),
+          toolbarWidgetColor: Colors.white,
+          hideBottomControls: true,
+          initAspectRatio: CropAspectRatioPreset.original,
+          lockAspectRatio: false,
+        ),
         iosUiSettings: IOSUiSettings(
           title: 'Cropper',
         ));

@@ -54,7 +54,7 @@ dev_dependencies:
 flutter_icons: # launch icon faster
   android: true
   ios: true
-  image_path: "assets/icon/logo2.png"
+  image_path: "assets/icon/logo4.png"
 
 
 flutter:

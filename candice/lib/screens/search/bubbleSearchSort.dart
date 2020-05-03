@@ -7,6 +7,17 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class BubbleSearchSort extends StatelessWidget {
+  BubbleSearchSort({this.index, this.action});
+  final int index;
+  final Function action;
+
+  final Map<String, SearchBubble> searchBubbleList = {
+    'home': SearchBubble.Home,
+    'trendingArtists': SearchBubble.TrendingArtists,
+    'events': SearchBubble.Events,
+    'castings': SearchBubble.Castings
+  };
+
   @override
   Widget build(BuildContext context) {
     final appState = Provider.of<AppState>(context, listen: true);
@@ -14,36 +25,23 @@ class BubbleSearchSort extends StatelessWidget {
       padding: const EdgeInsets.only(top: kCommonSeparation),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
-        child: Row(
-          children: <Widget>[
-            const SizedBox(width: kCommonSeparation),
-            BubbleSortDesign(
-              title: AppLocalizations.of(context).translate('home'),
-              action: () =>
-                  appState.reverseSearchBubbleState(SearchBubble.Home),
-              active: appState.searchBubbleState[SearchBubble.Home],
-            ),
-            BubbleSortDesign(
-              title: AppLocalizations.of(context).translate('trendingArtists'),
-              action: () => appState
-                  .reverseSearchBubbleState(SearchBubble.TrendingArtists),
-              active: appState.searchBubbleState[SearchBubble.TrendingArtists],
-            ),
-            BubbleSortDesign(
-              title: AppLocalizations.of(context).translate('events'),
-              action: () =>
-                  appState.reverseSearchBubbleState(SearchBubble.Events),
-              active: appState.searchBubbleState[SearchBubble.Events],
-            ),
-            BubbleSortDesign(
-              title: AppLocalizations.of(context).translate('castings'),
-              action: () =>
-                  appState.reverseSearchBubbleState(SearchBubble.Castings),
-              active: appState.searchBubbleState[SearchBubble.Castings],
-            ),
-          ],
-        ),
+        child: Row(children: buildBubbleList(context, appState)),
       ),
     );
+  }
+
+  List<Widget> buildBubbleList(context, appState) {
+    List<Widget> bubbleList = [const SizedBox(width: kCommonSeparation)];
+
+    searchBubbleList.forEach((key, value) {
+      bubbleList.add(
+        BubbleSortDesign(
+          title: AppLocalizations.of(context).translate(key),
+          action: () => action(value.index),
+          active: value.index == index,
+        ),
+      );
+    });
+    return bubbleList;
   }
 }

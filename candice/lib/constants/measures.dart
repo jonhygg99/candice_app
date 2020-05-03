@@ -26,8 +26,11 @@ const double kSizePhotoProfileMessages = 70.0;
 const double kSizeEditBackgroundImage = 160.0;
 const double kBackgroundImageHeight = 350.0;
 const double kPostPreviewBackgroundImageHeight = 200.0;
+const double kPostTrendingArtistSize = 370.0;
 const double kPostBackgroundImageHeight = 400.0;
 
+// Icon Button
+const double kIconButtonSize = 40.0;
 // Radius
 const Radius kRadiusCircular = Radius.circular(kRadius);
 BorderRadius kBorderRadiusCircular = BorderRadius.circular(kRadius);

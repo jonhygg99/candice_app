@@ -10,8 +10,11 @@ class HotThisWeek extends StatelessWidget {
     return Wrap(
       runSpacing: kCommonSeparation,
       children: <Widget>[
-        Text(AppLocalizations.of(context).translate('hotThisWeek'),
-            style: kBigBoldText),
+        Padding(
+          padding: const EdgeInsets.only(left: kCommonSeparation),
+          child: Text(AppLocalizations.of(context).translate('hotThisWeek'),
+              style: kBigBoldText),
+        ),
         HotThisWeekPostPreview()
       ],
     );
@@ -50,8 +53,8 @@ class HotThisWeekPostPreview extends StatelessWidget {
     );
   }
 
-  List<Stack> buildHotThisWeekPostPreview(List<Map> hotBackgrounds) {
-    List<Stack> widgets = [];
+  List<Widget> buildHotThisWeekPostPreview(List<Map> hotBackgrounds) {
+    List<Widget> widgets = [const SizedBox(width: kSmallSeparation)];
 
     hotBackgrounds.forEach((hot) {
       widgets.add(
@@ -87,6 +90,7 @@ class HotThisWeekPostPreview extends StatelessWidget {
         ]),
       );
     });
+    widgets.add(const SizedBox(width: kSmallSeparation));
     return widgets;
   }
 }

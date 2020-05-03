@@ -69,7 +69,7 @@ class _NavigationBarState extends State<NavigationBar> {
   bool openMusicTab = false;
   bool showMusicTab = false;
   bool playMusic = false;
-  int index = 0;
+  int index = 1;
   List<Widget> screens;
 
   @override

@@ -17,20 +17,6 @@ class AppState extends ChangeNotifier {
     currentUser.fetchUser(0);
   }
 
-  // Search Screen
-  Map<SearchBubble, bool> searchBubbleState = {
-    SearchBubble.Home: true,
-    SearchBubble.TrendingArtists: false,
-    SearchBubble.Events: false,
-    SearchBubble.Castings: false,
-  };
-
-  void reverseSearchBubbleState(SearchBubble category) {
-    searchBubbleState.forEach((key, value) => searchBubbleState[key] = false);
-    searchBubbleState[category] = true;
-    notifyListeners();
-  }
-
   // Notifications Screen
   Map<NotificationBubble, bool> notificationBubbleState = {
     NotificationBubble.Likes: true,

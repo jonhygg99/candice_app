@@ -1,8 +1,8 @@
 import 'package:candice/common/bubbleSortDesign.dart';
+import 'package:candice/constants/enum.dart';
 import 'package:candice/constants/measures.dart';
 import 'package:candice/models/appState.dart';
 import 'package:candice/models/app_localizations.dart';
-import 'package:candice/models/enum.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +15,10 @@ class BubbleSearchSort extends StatelessWidget {
     'home': SearchBubble.Home,
     'trendingArtists': SearchBubble.TrendingArtists,
     'events': SearchBubble.Events,
-    'castings': SearchBubble.Castings
+    'competitions': SearchBubble.Competitions,
+    'jobs': SearchBubble.Jobs,
+    'castings': SearchBubble.Castings,
+    'requests': SearchBubble.Requests
   };
 
   @override

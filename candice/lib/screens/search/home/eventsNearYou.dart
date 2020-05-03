@@ -62,8 +62,8 @@ class EventCard extends StatelessWidget {
                     right: kSmallSeparation,
                     top: kSmallSeparation,
                     child: BubbleSortDesign(
-                      title: getTranslation(context),
-                      color: getColor(),
+                      title: _getTranslation(context),
+                      color: _getColor(),
                     ),
                   ),
                   Positioned(
@@ -98,14 +98,14 @@ class EventCard extends StatelessWidget {
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
     );
   }
 
-  Color getColor() {
+  Color _getColor() {
     if (type == 'Concert')
       return kGreen;
     else if (type == 'Jam session')
@@ -116,7 +116,7 @@ class EventCard extends StatelessWidget {
       return kLightBlue;
   }
 
-  String getTranslation(context) {
+  String _getTranslation(context) {
     if (type == 'Concert')
       return AppLocalizations.of(context).translate('concert');
     else if (type == 'Jam session')

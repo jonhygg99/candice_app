@@ -1,6 +1,6 @@
+import 'package:candice/constants/enum.dart';
 import 'package:candice/models/appState.dart';
 import 'package:candice/models/app_localizations.dart';
-import 'package:candice/models/enum.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

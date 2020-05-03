@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-import 'enum.dart';
+import '../constants/enum.dart';
 import 'user/currentUser.dart';
 import 'user/lastUser.dart';
 

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'bubbleSearchSort.dart';
+import 'events/events.dart';
 import 'home/homeSearch.dart';
 
 class Search extends StatefulWidget {
@@ -25,10 +26,11 @@ class _SearchState extends State<Search> {
     searchList = [
       HomeSearch(),
       TrendingArtists(),
-      Text('c'),
-      Text('e'),
-      Text('f'),
-      Text('g'),
+      Events(),
+      Text('Competitions'),
+      Text('Jobs'),
+      Text('Castings'),
+      Text('Requests'),
     ];
     super.initState();
   }

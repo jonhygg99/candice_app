@@ -74,7 +74,7 @@ class _EventCardState extends State<EventCard> {
         ),
         Positioned(
           right: kCommonSeparation,
-          bottom: kSmallSeparation,
+          bottom: kMediumSeparation,
           child: InkWell(
             child: isLike ? kLikeIcon : kNotLikeIcon,
             onTap: () => setState(() {

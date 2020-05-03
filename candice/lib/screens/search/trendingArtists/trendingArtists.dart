@@ -43,7 +43,7 @@ class _TrendingArtistPostDesignState extends State<TrendingArtistPostDesign> {
         bottom: kCommonSeparation,
         left: kBigSeparation,
         child: Container(
-          width: kPostTrendingArtistSize - (kCommonSeparation * 2),
+          width: kPostTrendingArtistSize - (kCommonSeparation * 3),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -57,7 +57,7 @@ class _TrendingArtistPostDesignState extends State<TrendingArtistPostDesign> {
                             kIconButtonSize +
                             kSmallSeparation),
                     child: Text(
-                      'Gloria Mckinney',
+                      'Gloria McKinsey',
                       style: kBigWhiteBoldText,
                       overflow: TextOverflow.ellipsis,
                     ),

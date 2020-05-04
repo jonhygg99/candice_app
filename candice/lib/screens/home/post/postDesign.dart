@@ -11,121 +11,122 @@ import 'package:provider/provider.dart';
 class PostDesign extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final appState = Provider.of<AppState>(context, listen: false);
     return Padding(
       padding: kPaddingPost,
       child: Material(
+        borderRadius: BorderRadius.all(kRadiusCircular),
         elevation: kElevation,
         color: Colors.transparent,
         child: Column(
           children: <Widget>[
-            Stack(
+            MusicInteractions(),
+            PostProfile(),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class MusicInteractions extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        BackgroundImage(
+          imageUrl:
+              'https://images.unsplash.com/photo-1581289098325-fd41f57a9d4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1301&q=80',
+          height: kPostBackgroundImageHeight,
+        ),
+        Positioned(
+          top: kCommonSeparation,
+          left: kCommonSeparation,
+          child: Text(
+            'Break my soul',
+            style: kBigWhiteBoldText,
+          ),
+        ),
+        Positioned(
+          top: kPostBackgroundImageHeight / 2 - 50,
+          left: MediaQuery.of(context).size.width / 2 - 50,
+          child: Opacity(
+            opacity: kOpacity,
+            child: Icon(
+              Icons.play_circle_filled,
+              color: Colors.white,
+              size: 100,
+            ),
+          ),
+        ),
+        Positioned(
+          bottom: kSmallSeparation,
+          right: kSmallSeparation,
+          child: Container(
+            height: 30.0,
+            child: Row(
               children: <Widget>[
-                BackgroundImage(
-                  imageUrl:
-                      'https://images.unsplash.com/photo-1581289098325-fd41f57a9d4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1301&q=80',
-                  height: kPostBackgroundImageHeight,
+                BubblePost(
+                  icon: kCommentIcon,
+                  number: 212,
+                  action: () => print('Comment post'),
                 ),
-                Positioned(
-                  top: kCommonSeparation,
-                  left: kCommonSeparation,
-                  child: Text(
-                    'Break my soul',
-                    style: kBigWhiteBoldText,
-                  ),
+                const SizedBox(width: kSmallSeparation),
+                BubblePost(
+                  icon: kLikeIcon,
+                  number: 2032,
+                  action: () => print('Liked post'),
                 ),
-                Positioned(
-                  top: kPostBackgroundImageHeight / 2 - 50,
-                  left: MediaQuery.of(context).size.width / 2 - 50,
-                  child: Opacity(
-                    opacity: kOpacity,
-                    child: Icon(
-                      Icons.play_circle_filled,
-                      color: Colors.white,
-                      size: 100,
-                    ),
-                  ),
-                ),
-                Positioned(
-                  bottom: 0,
-                  left: 165,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: kSmallSeparation,
-                      vertical: kTinySeparation,
-                    ),
-                    child: Container(
-                      width: kPostBackgroundImageHeight,
-                      height: 30.0,
-                      child: Row(
-                        children: <Widget>[
-                          BubblePost(
-                            icon: kCommentIcon,
-                            number: 212,
-                            action: () => print('Comment post'),
-                          ),
-                          const SizedBox(width: kSmallSeparation),
-                          BubblePost(
-                            icon: kLikeIcon,
-                            number: 2032,
-                            action: () => print('Liked post'),
-                          ),
-                          const SizedBox(
-                            width: kHugeSeparation + kMediumSeparation,
-                          ),
-//                        TextField(
-//                          decoration:
-//                              InputDecoration(hintText: 'Add comment...'),
-//                        )
-                        ],
-                      ),
-                    ),
-                  ),
-                )
               ],
             ),
-            Container(
-              height: 90.0,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: const BorderRadius.only(
-                    bottomLeft: kRadiusCircular, bottomRight: kRadiusCircular),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: kMediumSeparation,
-                  vertical: kSmallSeparation,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class PostProfile extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final appState = Provider.of<AppState>(context, listen: false);
+    return Container(
+      height: 90.0,
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: const BorderRadius.only(
+            bottomLeft: kRadiusCircular, bottomRight: kRadiusCircular),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: kMediumSeparation,
+          vertical: kSmallSeparation,
+        ),
+        child: Row(
+          children: <Widget>[
+            PhotoProfile(
+              imageUrl:
+                  'https://images.unsplash.com/photo-1536896407451-6e3dd976edd1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80',
+              size: kSizePhotoProfileStory,
+              action: () => goToUserProfile(context, appState, '1'),
+            ),
+            const SizedBox(width: kCommonSeparation),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                InkWell(
+                  child: Text(
+                    'Julie Howard',
+                    style: kMediumBoldText,
+                  ),
+                  onTap: () => goToUserProfile(context, appState, '1'),
                 ),
-                child: Row(
-                  children: <Widget>[
-                    PhotoProfile(
-                      imageUrl:
-                          'https://images.unsplash.com/photo-1536896407451-6e3dd976edd1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80',
-                      size: kSizePhotoProfileStory,
-                      action: () => goToUserProfile(context, appState, '1'),
-                    ),
-                    const SizedBox(width: kCommonSeparation),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        InkWell(
-                          child: Text(
-                            'Julie Howard',
-                            style: kMediumBoldText,
-                          ),
-                          onTap: () => goToUserProfile(context, appState, '1'),
-                        ),
-                        const SizedBox(height: kSmallSeparation),
-                        Text(
-                          '42 min ago', // TODO: time - time and translation support
-                          style: TextStyle(color: Colors.black54),
-                        )
-                      ],
-                    )
-                  ],
+                const SizedBox(height: kSmallSeparation),
+                Text(
+                  '42 min ago', // TODO: time - time and translation support
+                  style: TextStyle(color: Colors.black54),
                 ),
-              ),
+              ],
             ),
           ],
         ),

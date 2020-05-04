@@ -30,14 +30,12 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     super.initState();
   }
 
-  @override
   void dispose() {
     _tabController.dispose();
     _scrollViewController.dispose();
     super.dispose();
   }
 
-  @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
@@ -69,7 +67,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                     labelStyle: kMediumBoldText,
                     indicatorSize: TabBarIndicatorSize.tab,
                     indicatorColor: Colors.transparent,
-                    controller: _tabController,
+//                    controller: _tabController,
                     tabs: <Tab>[
                       Tab(
                         text:

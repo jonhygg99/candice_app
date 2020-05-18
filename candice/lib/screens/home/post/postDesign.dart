@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:candice/common/backgroundImage.dart';
 import 'package:candice/common/numberFormat.dart';
 import 'package:candice/common/profileImage.dart';
@@ -28,7 +31,44 @@ class PostDesign extends StatelessWidget {
   }
 }
 
-class MusicInteractions extends StatelessWidget {
+class MusicInteractions extends StatefulWidget {
+  @override
+  _MusicInteractionsState createState() => _MusicInteractionsState();
+}
+
+class _MusicInteractionsState extends State<MusicInteractions> {
+  bool isFirstTime = true;
+  final AssetsAudioPlayer _assetsAudioPlayer = AssetsAudioPlayer();
+  final List<StreamSubscription> _subscriptions = [];
+
+  @override
+  void initState() {
+    _assetsAudioPlayer.open(
+      Audio('assets/sample/audioSample.mp3'),
+      autoStart: false,
+    );
+    _subscriptions.add(_assetsAudioPlayer.playlistFinished.listen((data) {
+      print("finished : $data");
+    }));
+    _subscriptions.add(_assetsAudioPlayer.playlistAudioFinished.listen((data) {
+      print("playlistAudioFinished : $data");
+    }));
+    _subscriptions.add(_assetsAudioPlayer.current.listen((data) {
+      print("current : $data");
+    }));
+    _subscriptions.add(_assetsAudioPlayer.onReadyToPlay.listen((audio) {
+      print("onRedayToPlay : $audio");
+    }));
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _assetsAudioPlayer.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -46,18 +86,33 @@ class MusicInteractions extends StatelessWidget {
             style: kBigWhiteBoldText,
           ),
         ),
-        Positioned(
-          top: kPostBackgroundImageHeight / 2 - 50,
-          left: MediaQuery.of(context).size.width / 2 - 50,
-          child: Opacity(
-            opacity: kOpacity,
-            child: Icon(
-              Icons.play_circle_filled,
-              color: Colors.white,
-              size: 100,
-            ),
-          ),
-        ),
+        StreamBuilder(
+            stream: _assetsAudioPlayer.current,
+            builder: (context, snapshot) {
+              final Playing playing = snapshot.data;
+              final bool isPlaying = _assetsAudioPlayer.isPlaying.value;
+              return Positioned(
+                top: kPostBackgroundImageHeight / 2 - 50,
+                left: MediaQuery.of(context).size.width / 2 - 50,
+                child: Opacity(
+                  opacity: kOpacity,
+                  child: InkWell(
+                    onTap: () {
+                      setState(() {
+                        _assetsAudioPlayer.playOrPause();
+                      });
+                    },
+                    child: Icon(
+                      isPlaying
+                          ? Icons.pause_circle_filled
+                          : Icons.play_circle_filled,
+                      color: Colors.white,
+                      size: 100,
+                    ),
+                  ),
+                ),
+              );
+            }),
         Positioned(
           bottom: kSmallSeparation,
           right: kSmallSeparation,

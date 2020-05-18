@@ -34,8 +34,9 @@ dependencies:
 # Cache management
   cached_network_image: ^2.0.0
 # video player
-  video_player: ^0.10.8+1
-  chewie: ^0.9.7
+  video_player: ^0.10.10
+# audio player
+  assets_audio_player: ^1.4.2
 # launch icon faster
   flutter_launcher_icons: ^0.7.4
 # picking images and taking new pictures with the camera
@@ -61,6 +62,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/sample/storySample.mp4 # TODO: remove
+    - assets/sample/audioSample.mp3 # TODO: remove
     - assets/languages/en.json
     - assets/languages/es.json
   fonts:

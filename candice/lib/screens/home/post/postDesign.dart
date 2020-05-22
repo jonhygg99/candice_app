@@ -1,9 +1,8 @@
-import 'dart:async';
-
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:candice/common/backgroundImage.dart';
 import 'package:candice/common/numberFormat.dart';
 import 'package:candice/common/profileImage.dart';
+import 'package:candice/constants/colors.dart';
 import 'package:candice/constants/icons.dart';
 import 'package:candice/constants/measures.dart';
 import 'package:candice/constants/typography.dart';
@@ -39,27 +38,16 @@ class MusicInteractions extends StatefulWidget {
 class _MusicInteractionsState extends State<MusicInteractions> {
   bool isFirstTime = true;
   final AssetsAudioPlayer _assetsAudioPlayer = AssetsAudioPlayer();
-  final List<StreamSubscription> _subscriptions = [];
 
   @override
   void initState() {
     _assetsAudioPlayer.open(
       Audio('assets/sample/audioSample.mp3'),
       autoStart: false,
+      respectSilentMode: true,
+      showNotification: true,
     );
-    _subscriptions.add(_assetsAudioPlayer.playlistFinished.listen((data) {
-      print("finished : $data");
-    }));
-    _subscriptions.add(_assetsAudioPlayer.playlistAudioFinished.listen((data) {
-      print("playlistAudioFinished : $data");
-    }));
-    _subscriptions.add(_assetsAudioPlayer.current.listen((data) {
-      print("current : $data");
-    }));
-    _subscriptions.add(_assetsAudioPlayer.onReadyToPlay.listen((audio) {
-      print("onRedayToPlay : $audio");
-    }));
-
+    _assetsAudioPlayer.loop = true;
     super.initState();
   }
 
@@ -86,15 +74,15 @@ class _MusicInteractionsState extends State<MusicInteractions> {
             style: kBigWhiteBoldText,
           ),
         ),
-        StreamBuilder(
-            stream: _assetsAudioPlayer.current,
-            builder: (context, snapshot) {
-              final Playing playing = snapshot.data;
-              final bool isPlaying = _assetsAudioPlayer.isPlaying.value;
-              return Positioned(
-                top: kPostBackgroundImageHeight / 2 - 50,
-                left: MediaQuery.of(context).size.width / 2 - 50,
-                child: Opacity(
+        Positioned(
+          top: kPostBackgroundImageHeight / 2 - 50,
+          left: MediaQuery.of(context).size.width / 2 - 65,
+          child: StreamBuilder(
+              stream: _assetsAudioPlayer.current,
+              builder: (context, snapshot) {
+                final Playing playing = snapshot.data;
+                final bool isPlaying = _assetsAudioPlayer.isPlaying.value;
+                return Opacity(
                   opacity: kOpacity,
                   child: InkWell(
                     onTap: () {
@@ -110,9 +98,9 @@ class _MusicInteractionsState extends State<MusicInteractions> {
                       size: 100,
                     ),
                   ),
-                ),
-              );
-            }),
+                );
+              }),
+        ),
         Positioned(
           bottom: kSmallSeparation,
           right: kSmallSeparation,
@@ -134,6 +122,66 @@ class _MusicInteractionsState extends State<MusicInteractions> {
               ],
             ),
           ),
+        ),
+        Positioned(
+          bottom: kCommonSeparation,
+          left: kSmallSeparation,
+          child: _assetsAudioPlayer.current.value == null
+              ? SizedBox(width: 0)
+              : StreamBuilder(
+                  stream: _assetsAudioPlayer.currentPosition,
+                  builder: (context, asyncSnapshot) {
+                    final Duration duration = asyncSnapshot.data;
+                    final songDuration =
+                        _assetsAudioPlayer.current.value.audio.duration;
+                    format(Duration d) => d
+                        .toString()
+                        .split('.')
+                        .first
+                        .padLeft(8, '0')
+                        .substring('00:'.length, '00:00:00'.length);
+                    return Text(
+                      format(duration) + ' / ' + format(songDuration),
+                      style: TextStyle(color: Colors.white),
+                    );
+                  }),
+        ),
+        Positioned(
+          bottom: -kCommonSeparation - 2,
+          left: -25,
+          child: _assetsAudioPlayer.current.value == null
+              ? SizedBox(width: 0)
+              : Container(
+                  width: kPostBackgroundImageHeight + 10,
+                  child: StreamBuilder(
+                      stream: _assetsAudioPlayer.currentPosition,
+                      builder: (context, asyncSnapshot) {
+                        final songDuration =
+                            _assetsAudioPlayer.current.value.audio.duration;
+                        return SliderTheme(
+                          data: SliderTheme.of(context).copyWith(
+                            activeTrackColor: kPink,
+                            inactiveTrackColor: Colors.white70,
+                            thumbColor: Colors.transparent,
+                            trackHeight: 5.0,
+                            thumbShape:
+                                RoundSliderThumbShape(enabledThumbRadius: 0.0),
+                          ),
+                          child: Slider(
+                              min: 0,
+                              max: songDuration.inSeconds.toDouble(),
+                              value: _assetsAudioPlayer
+                                  .currentPosition.value.inSeconds
+                                  .toDouble(),
+                              onChanged: (value) {
+                                setState(() {
+                                  _assetsAudioPlayer
+                                      .seek(Duration(seconds: value.toInt()));
+                                });
+                              }),
+                        );
+                      }),
+                ),
         ),
       ],
     );

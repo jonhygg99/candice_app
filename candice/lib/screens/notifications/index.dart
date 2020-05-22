@@ -85,10 +85,13 @@ class _NotificationsState extends State<Notifications>
                   ),
                   const SizedBox(height: kMediumSeparation),
                   Expanded(
-                    child: TabBarView(controller: _tabController, children: [
-                      MessagesTab(),
-                      NotificationsTab(),
-                    ]),
+                    child: TabBarView(
+                      controller: _tabController,
+                      children: [
+                        MessagesTab(),
+                        NotificationsTab(),
+                      ],
+                    ),
                   ),
                 ],
               ),

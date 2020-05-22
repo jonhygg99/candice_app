@@ -46,23 +46,22 @@ class PostPreviewDesign extends StatelessWidget {
             imageUrl: backgroundImage,
             height: kPostPreviewBackgroundImageHeight),
         Positioned(
-          bottom: 12,
-          left: 12,
+          bottom: kMediumSeparation,
+          left: kMediumSeparation,
           child: Text(title, style: kWhiteBoldText),
         ),
-        Positioned(
-          top: kPostPreviewBackgroundImageHeight / 4,
-          left: MediaQuery.of(context).size.width / 6 -
-              (kMediumSeparation +
-                  kMediumSeparation), // Depends on the BackgroundImage widget, the width and height
-          child: Opacity(
-            opacity: kOpacity,
-            child: IconButton(
-              icon: Icon(
-                  Icons.play_circle_filled /*: Icons.pause_circle_filled */),
-              iconSize: 70,
-              color: Colors.white,
-              onPressed: () => print('playing song'),
+        Positioned.fill(
+          child: Align(
+            alignment: Alignment.center,
+            child: Opacity(
+              opacity: kOpacity,
+              child: IconButton(
+                icon: Icon(
+                    Icons.play_circle_filled /*: Icons.pause_circle_filled */),
+                iconSize: 70,
+                color: Colors.white,
+                onPressed: () => print('playing song'),
+              ),
             ),
           ),
         ),

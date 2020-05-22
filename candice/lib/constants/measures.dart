@@ -27,7 +27,7 @@ const double kSizeEditBackgroundImage = 160.0;
 const double kBackgroundImageHeight = 350.0;
 const double kPostPreviewBackgroundImageHeight = 200.0;
 const double kPostTrendingArtistSize = 370.0;
-const double kPostEventSearchHeight = 170.0;
+const double kPostEventSearchHeight = 250.0;
 const double kPostBackgroundImageHeight = 400.0;
 
 // Icon Button

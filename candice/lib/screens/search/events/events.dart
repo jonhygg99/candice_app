@@ -65,7 +65,8 @@ class _EventCardState extends State<EventCard> {
               const SizedBox(height: kTinySeparation),
               Row(
                 children: <Widget>[
-                  Icon(Icons.location_on, color: Colors.white),
+                  const Icon(Icons.location_on, color: Colors.white),
+                  const SizedBox(width: kTinySeparation),
                   Text('Apolo, Barcelona', style: kWhiteBoldText)
                 ],
               )

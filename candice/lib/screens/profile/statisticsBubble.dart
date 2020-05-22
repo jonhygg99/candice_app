@@ -21,7 +21,6 @@ class StatisticsBubble extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       margin: kMarginCard,
-      clipBehavior: Clip.hardEdge,
       shape: RoundedRectangleBorder(
         borderRadius: kBorderRadiusCircular,
       ),

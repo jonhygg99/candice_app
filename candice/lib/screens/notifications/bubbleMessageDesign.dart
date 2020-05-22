@@ -32,29 +32,37 @@ class BubbleMessageDesign extends StatelessWidget {
         child: Padding(
           padding: kPaddingCardMessages,
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              story
-                  ? StoryDesign(profilePic: profilePic, withPadding: false)
-                  : PhotoProfile(
-                      imageUrl: profilePic,
-                      size: kSizePhotoProfileMessages,
-                      action: () => goToUserProfile(context, appState, 1),
-                    ),
-              const SizedBox(width: kCommonSeparation),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Row(
                 children: <Widget>[
-                  Text(
-                    userName,
-                    style: kMediumBoldText,
-                  ),
-                  const SizedBox(height: kMediumSeparation),
+                  story
+                      ? StoryDesign(profilePic: profilePic, withPadding: false)
+                      : PhotoProfile(
+                          imageUrl: profilePic,
+                          size: kSizePhotoProfileMessages,
+                          action: () => goToUserProfile(context, appState, 1),
+                        ),
+                  const SizedBox(width: kCommonSeparation),
                   Container(
-                    width: MediaQuery.of(context).size.width / 3 +
-                        MediaQuery.of(context).size.width / 12,
-                    child: Text(
-                      lastMessage,
-                      overflow: TextOverflow.ellipsis,
+                    width: MediaQuery.of(context).size.width -
+                        kSizePhotoProfileMessages -
+                        kCommonSeparation * 3 -
+                        kBigSeparation * 2 -
+                        25 * 2,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          userName,
+                          style: kMediumBoldText,
+                        ),
+                        const SizedBox(height: kMediumSeparation),
+                        Text(
+                          lastMessage,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -63,8 +71,8 @@ class BubbleMessageDesign extends StatelessWidget {
                   ? ClipOval(
                       child: Container(
                         color: kPink,
-                        height: 25.0, // height of the button
-                        width: 25.0, // width of the button
+                        height: 25.0,
+                        width: 25.0,
                         child: Center(
                           child: Text(
                             newMessages.toString(),

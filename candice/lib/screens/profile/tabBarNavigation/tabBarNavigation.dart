@@ -70,10 +70,13 @@ class _TabBarNavigationState extends State<TabBarNavigation>
             const SizedBox(height: kCommonSeparation),
             SizedBox(
               height: 500, // TODO: depends on how many or try to do Expand
-              child: TabBarView(controller: _tabController, children: [
-                ArtworkTab(widget.posts),
-                PastJobsTab(),
-              ]),
+              child: TabBarView(
+                controller: _tabController,
+                children: [
+                  ArtworkTab(widget.posts),
+                  PastJobsTab(),
+                ],
+              ),
             ),
           ],
         ),

@@ -36,18 +36,26 @@ class MusicInteractions extends StatefulWidget {
 }
 
 class _MusicInteractionsState extends State<MusicInteractions> {
-  bool isFirstTime = true;
   final AssetsAudioPlayer _assetsAudioPlayer = AssetsAudioPlayer();
 
   @override
   void initState() {
     _assetsAudioPlayer.open(
-      Audio('assets/sample/audioSample.mp3'),
+      Audio(
+        'assets/sample/audioSample.mp3',
+        metas: Metas(
+          title: "Break my soul",
+          artist: "Julie Howard",
+          album: "",
+          image: MetasImage.network(
+              "https://images.unsplash.com/photo-1581289098325-fd41f57a9d4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1301&q=80"),
+        ),
+      ),
       autoStart: false,
       respectSilentMode: true,
-      showNotification: true,
+      showNotification:
+          false, // TODO: all the songs are reproduced at the same time
     );
-    _assetsAudioPlayer.loop = true;
     super.initState();
   }
 
@@ -74,32 +82,33 @@ class _MusicInteractionsState extends State<MusicInteractions> {
             style: kBigWhiteBoldText,
           ),
         ),
-        Positioned(
-          top: kPostBackgroundImageHeight / 2 - 50,
-          left: MediaQuery.of(context).size.width / 2 - 65,
-          child: StreamBuilder(
-              stream: _assetsAudioPlayer.current,
-              builder: (context, snapshot) {
-                final Playing playing = snapshot.data;
-                final bool isPlaying = _assetsAudioPlayer.isPlaying.value;
-                return Opacity(
-                  opacity: kOpacity,
-                  child: InkWell(
-                    onTap: () {
-                      setState(() {
-                        _assetsAudioPlayer.playOrPause();
-                      });
-                    },
-                    child: Icon(
-                      isPlaying
-                          ? Icons.pause_circle_filled
-                          : Icons.play_circle_filled,
-                      color: Colors.white,
-                      size: 100,
+        Positioned.fill(
+          child: Align(
+            alignment: Alignment.center,
+            child: StreamBuilder(
+                stream: _assetsAudioPlayer.current,
+                builder: (context, snapshot) {
+                  final Playing playing = snapshot.data;
+                  final bool isPlaying = _assetsAudioPlayer.isPlaying.value;
+                  return Opacity(
+                    opacity: kOpacity,
+                    child: InkWell(
+                      onTap: () {
+                        setState(() {
+                          _assetsAudioPlayer.playOrPause();
+                        });
+                      },
+                      child: Icon(
+                        isPlaying
+                            ? Icons.pause_circle_filled
+                            : Icons.play_circle_filled,
+                        color: Colors.white,
+                        size: 100,
+                      ),
                     ),
-                  ),
-                );
-              }),
+                  );
+                }),
+          ),
         ),
         Positioned(
           bottom: kSmallSeparation,
@@ -131,9 +140,11 @@ class _MusicInteractionsState extends State<MusicInteractions> {
               : StreamBuilder(
                   stream: _assetsAudioPlayer.currentPosition,
                   builder: (context, asyncSnapshot) {
-                    final Duration duration = asyncSnapshot.data;
-                    final songDuration =
-                        _assetsAudioPlayer.current.value.audio.duration;
+                    final Duration songPostion =
+                        asyncSnapshot.data ?? Duration(seconds: 0);
+                    final Duration songDuration =
+                        _assetsAudioPlayer.current.value.audio.duration ??
+                            Duration(seconds: 0);
                     format(Duration d) => d
                         .toString()
                         .split('.')
@@ -141,18 +152,19 @@ class _MusicInteractionsState extends State<MusicInteractions> {
                         .padLeft(8, '0')
                         .substring('00:'.length, '00:00:00'.length);
                     return Text(
-                      format(duration) + ' / ' + format(songDuration),
+                      format(songPostion) + ' / ' + format(songDuration),
                       style: TextStyle(color: Colors.white),
                     );
                   }),
         ),
         Positioned(
-          bottom: -kCommonSeparation - 2,
-          left: -25,
+          bottom: -kCommonSeparation - 2, // to get to the bottom of the post
+          left: -kBigSeparation, // have the left fill it
           child: _assetsAudioPlayer.current.value == null
               ? SizedBox(width: 0)
               : Container(
-                  width: kPostBackgroundImageHeight + 10,
+                  width: MediaQuery.of(context).size.width +
+                      kCommonSeparation, // fill all the bottom
                   child: StreamBuilder(
                       stream: _assetsAudioPlayer.currentPosition,
                       builder: (context, asyncSnapshot) {

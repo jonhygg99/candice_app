@@ -91,7 +91,7 @@ class _NavigationBarState extends State<NavigationBar> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       body: screens[index],
 //      persistentFooterButtons:
 //          appState.showMusicTab ? <Widget>[MusicPlayer()] : null,

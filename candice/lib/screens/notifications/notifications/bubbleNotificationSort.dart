@@ -4,7 +4,7 @@ import 'package:candice/models/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../common/bubbleSortDesign.dart';
+import '../../../common/bubbleSortDesign.dart';
 
 class BubbleNotificationSort extends StatelessWidget {
   @override

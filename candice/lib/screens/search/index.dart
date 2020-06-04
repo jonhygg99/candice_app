@@ -36,9 +36,10 @@ class _SearchState extends State<Search> {
   }
 
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: RefreshIndicator(
+    return Container(
+      color: Colors.white,
+      child: SafeArea(
+        child: RefreshIndicator(
           onRefresh: _refreshSearch, // TODO: call to fetch the search
           child: ListView(
             children: <Widget>[

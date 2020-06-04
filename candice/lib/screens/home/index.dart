@@ -37,62 +37,56 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   }
 
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: DefaultTabController(
-        length: 2,
-        initialIndex: 0,
-        child: Scaffold(
-          body: NestedScrollView(
-            controller: _scrollViewController,
-            headerSliverBuilder:
-                (BuildContext context, bool innerBoxIsScrolled) {
-              return <Widget>[
-                SliverAppBar(
-                  title: InkWell(
-                    child: const Text(kCandice, style: kLogoText),
-                    onTap: () => scrollToTop(),
-                  ),
-                  centerTitle: true,
-                  elevation: 0,
-                  backgroundColor: Colors.white,
-                  pinned: true,
-                  floating: true,
-                  snap: true,
-                  forceElevated: innerBoxIsScrolled,
-                  bottom: TabBar(
-                    unselectedLabelColor: Colors.black54,
-                    labelColor: kPink,
-                    unselectedLabelStyle: kMediumBoldText,
-                    labelStyle: kMediumBoldText,
-                    indicatorSize: TabBarIndicatorSize.tab,
-                    indicatorColor: Colors.transparent,
-//                    controller: _tabController,
-                    tabs: <Tab>[
-                      Tab(
-                        text:
-                            AppLocalizations.of(context).translate('following'),
-                      ),
-                      Tab(
-                        text:
-                            AppLocalizations.of(context).translate('trending'),
-                      )
-                    ],
-                  ),
+    return DefaultTabController(
+      length: 2,
+      initialIndex: 0,
+      child: Scaffold(
+        body: NestedScrollView(
+          controller: _scrollViewController,
+          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+            return <Widget>[
+              SliverAppBar(
+                title: InkWell(
+                  child: const Text(kCandice, style: kLogoText),
+                  onTap: () => scrollToTop(),
                 ),
-              ];
-            },
-            body: MediaQuery.removePadding(
-              context: context,
-              removeTop: true,
-              child: Padding(
-                padding: const EdgeInsets.only(top: kCommonSeparation),
-                child: TabBarView(
-                  children: [
-                    PostSection(), // TODO: Following
-                    PostSection(), // TODO: Trending
+                centerTitle: true,
+                elevation: 0,
+                backgroundColor: Colors.white,
+                pinned: true,
+                floating: true,
+                snap: true,
+                forceElevated: innerBoxIsScrolled,
+                bottom: TabBar(
+                  unselectedLabelColor: Colors.black54,
+                  labelColor: kPink,
+                  unselectedLabelStyle: kMediumBoldText,
+                  labelStyle: kMediumBoldText,
+                  indicatorSize: TabBarIndicatorSize.tab,
+                  indicatorColor: Colors.transparent,
+//                    controller: _tabController,
+                  tabs: <Tab>[
+                    Tab(
+                      text: AppLocalizations.of(context).translate('following'),
+                    ),
+                    Tab(
+                      text: AppLocalizations.of(context).translate('trending'),
+                    )
                   ],
                 ),
+              ),
+            ];
+          },
+          body: MediaQuery.removePadding(
+            context: context,
+            removeTop: true,
+            child: Padding(
+              padding: const EdgeInsets.only(top: kCommonSeparation),
+              child: TabBarView(
+                children: [
+                  PostSection(), // TODO: Following
+                  PostSection(), // TODO: Trending
+                ],
               ),
             ),
           ),

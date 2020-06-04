@@ -4,8 +4,8 @@ import 'package:candice/constants/typography.dart';
 import 'package:candice/models/app_localizations.dart';
 import 'package:flutter/material.dart';
 
-import 'messagesTab.dart';
-import 'notificationsTab.dart';
+import 'messages/messagesTab.dart';
+import 'notifications/notificationsTab.dart';
 
 class Notifications extends StatefulWidget {
   @override
@@ -33,7 +33,6 @@ class _NotificationsState extends State<Notifications>
   Widget build(BuildContext context) {
     return Scaffold(
       // TODO: scroll
-      backgroundColor: Colors.white,
       floatingActionButton: _tabController.index == 0
           ? FloatingActionButton(
               backgroundColor: kPink,

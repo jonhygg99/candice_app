@@ -107,7 +107,19 @@ class _AppRegistrationState extends State<AppRegistration> {
               const SizedBox(height: kSmallSeparation),
               FlatButton(
                 child: Text('Log in', style: kMediumWhiteBoldText),
-                onPressed: () => print('pressed'),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => RegistrationProcess(
+                        registrationProcess: RegistrationProcessType.Email,
+                        registrationMap: registrationMap,
+                        action: widget.action,
+                        isLogIn: true,
+                      ),
+                    ),
+                  );
+                },
               ),
               const SizedBox(height: 45.0),
             ],

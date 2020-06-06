@@ -27,7 +27,7 @@ class BubbleMessageDesign extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: kSmallSeparation),
       child: Card(
         clipBehavior: Clip.hardEdge,
-        shape: RoundedRectangleBorder(borderRadius: kBorderRadiusCircular),
+        shape: RoundedRectangleBorder(borderRadius: kBorderRadiusSomeBorder),
         elevation: kElevation,
         child: Padding(
           padding: kPaddingCardMessages,

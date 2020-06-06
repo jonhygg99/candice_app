@@ -43,8 +43,12 @@ dependencies:
   image_picker: ^0.6.4
 # Crop image
   image_cropper: ^1.2.1
+# firebase - database
+  firebase_auth: ^0.16.1
+  cloud_firestore: ^0.13.6
 
-# language support
+
+  # language support
   flutter_localizations:
     sdk: flutter
 

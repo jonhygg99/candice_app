@@ -34,7 +34,8 @@ const double kPostBackgroundImageHeight = 400.0;
 const double kIconButtonSize = 40.0;
 // Radius
 const Radius kRadiusCircular = Radius.circular(kRadius);
-BorderRadius kBorderRadiusCircular = BorderRadius.circular(kRadius);
+BorderRadius kBorderRadiusSomeBorder = BorderRadius.circular(kRadius);
+BorderRadius kBorderRadiusCircular = BorderRadius.circular(50);
 const Radius kBorderRadiusCircle = Radius.circular(50);
 
 // Padding

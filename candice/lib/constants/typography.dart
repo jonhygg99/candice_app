@@ -9,7 +9,20 @@ const String kPacifico = 'Pacifico';
 const TextStyle kLogoText = TextStyle(
   color: kPink,
   fontFamily: kPacifico,
-  fontSize: 24,
+  fontSize: 24.0,
+);
+
+const TextStyle kPinkText = TextStyle(
+  color: kPink,
+  fontSize: 18.0,
+  fontFamily: kRobotoBold,
+  fontWeight: FontWeight.bold,
+);
+
+const TextStyle kWhiteLogoTextRegistration = TextStyle(
+  color: Colors.white,
+  fontFamily: kPacifico,
+  fontSize: 65.0,
 );
 
 const TextStyle kBoldText = TextStyle(

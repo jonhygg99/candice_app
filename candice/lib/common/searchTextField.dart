@@ -8,7 +8,7 @@ class SearchTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       clipBehavior: Clip.hardEdge,
-      shape: RoundedRectangleBorder(borderRadius: kBorderRadiusCircular),
+      shape: RoundedRectangleBorder(borderRadius: kBorderRadiusSomeBorder),
       elevation: kElevation,
       child: TextField(
         onChanged: (String inputText) => print(inputText),

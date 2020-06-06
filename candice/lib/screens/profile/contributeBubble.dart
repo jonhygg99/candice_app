@@ -13,7 +13,7 @@ class ContributeBubble extends StatelessWidget {
     return Card(
       margin: kMarginCard,
       shape: RoundedRectangleBorder(
-        borderRadius: kBorderRadiusCircular,
+        borderRadius: kBorderRadiusSomeBorder,
       ),
       elevation: kElevation,
       child: Padding(

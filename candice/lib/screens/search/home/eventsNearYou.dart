@@ -41,7 +41,7 @@ class EventCard extends StatelessWidget {
       padding: const EdgeInsets.only(right: kCommonSeparation),
       child: Card(
         clipBehavior: Clip.hardEdge,
-        shape: RoundedRectangleBorder(borderRadius: kBorderRadiusCircular),
+        shape: RoundedRectangleBorder(borderRadius: kBorderRadiusSomeBorder),
         elevation: kElevation,
         child: Row(
           children: <Widget>[

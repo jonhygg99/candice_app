@@ -2,6 +2,7 @@ import 'package:candice/constants/typography.dart';
 import 'package:candice/models/appState.dart';
 import 'package:candice/screens/add_post/index.dart';
 import 'package:candice/screens/home/index.dart';
+import 'package:candice/screens/login_registration/index.dart';
 import 'package:candice/screens/notifications/index.dart';
 import 'package:candice/screens/profile/index.dart';
 import 'package:candice/screens/search/index.dart';
@@ -14,14 +15,33 @@ import 'models/app_localizations.dart';
 
 void main() => runApp(App());
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
+  @override
+  _AppState createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  bool isLogIn = false;
+
+  @override
+  void initState() {
+    isLogIn = false; // TODO: log in
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Candice',
       home: ChangeNotifierProvider<AppState>(
         create: (context) => AppState(),
-        child: NavigationBar(),
+        child: isLogIn
+            ? NavigationBar()
+            : AppRegistration(action: () {
+                setState(() {
+                  isLogIn = true;
+                });
+              }),
       ),
       theme: ThemeData(fontFamily: kRobotoFontFamily),
       debugShowCheckedModeBanner: false,

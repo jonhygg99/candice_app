@@ -42,7 +42,7 @@ class ReviewDesign extends StatelessWidget {
     final appState = Provider.of<AppState>(context, listen: false);
     return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: kBorderRadiusCircular,
+        borderRadius: kBorderRadiusSomeBorder,
       ),
       elevation: kElevation,
       child: Padding(

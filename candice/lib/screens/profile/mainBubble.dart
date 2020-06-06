@@ -24,7 +24,7 @@ class MainBubble extends StatelessWidget {
       margin: kMarginCard,
       clipBehavior: Clip.hardEdge,
       shape: RoundedRectangleBorder(
-        borderRadius: kBorderRadiusCircular,
+        borderRadius: kBorderRadiusSomeBorder,
       ),
       elevation: kElevation,
       child: Padding(
@@ -111,7 +111,7 @@ class ActionButton extends StatelessWidget {
         elevation: kElevation,
         padding: kPaddingButton,
         shape: RoundedRectangleBorder(
-            borderRadius: kBorderRadiusCircular,
+            borderRadius: kBorderRadiusSomeBorder,
             side: BorderSide(color: color, width: 4)),
       ),
     );

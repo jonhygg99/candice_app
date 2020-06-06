@@ -9,8 +9,8 @@ class AddPost extends StatelessWidget {
     return Container(
       color: Colors.black,
       child: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
+        child: ListView(
+          padding: EdgeInsets.only(top: MediaQuery.of(context).size.height / 4),
           children: <Widget>[
             AddPostDesignButton(
               title: 'Create event',
@@ -22,7 +22,7 @@ class AddPost extends StatelessWidget {
               color: kNeonBlue,
               action: () => print('Request Group'),
             ),
-            const SizedBox(height: 80.0),
+            SizedBox(height: MediaQuery.of(context).size.height / 10),
             AddPostDesignButton(
               title: 'Create Track',
               color: kPink,
@@ -38,7 +38,6 @@ class AddPost extends StatelessWidget {
               color: kPink,
               action: () => print('Upload Video'),
             ),
-            const SizedBox(height: 40.0),
           ],
         ),
       ),

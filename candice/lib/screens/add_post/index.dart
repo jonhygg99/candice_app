@@ -13,28 +13,28 @@ class AddPost extends StatelessWidget {
           padding: EdgeInsets.only(top: MediaQuery.of(context).size.height / 4),
           children: <Widget>[
             AddPostDesignButton(
-              title: 'Create event',
+              title: 'Create event', // TODO: translation
               color: kNeonBlue,
               action: () => print('Create event'),
             ),
             AddPostDesignButton(
-              title: 'Request Group',
+              title: 'Request Group', // TODO: translation
               color: kNeonBlue,
               action: () => print('Request Group'),
             ),
             SizedBox(height: MediaQuery.of(context).size.height / 10),
             AddPostDesignButton(
-              title: 'Create Track',
+              title: 'Create Track', // TODO: translation
               color: kPink,
               action: () => print('Create track'),
             ),
             AddPostDesignButton(
-              title: 'Upload track',
+              title: 'Upload track', // TODO: translation
               color: kPink,
               action: () => print('Upload Track'),
             ),
             AddPostDesignButton(
-              title: 'Upload Video',
+              title: 'Upload Video', // TODO: translation
               color: kPink,
               action: () => print('Upload Video'),
             ),

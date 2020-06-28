@@ -38,5 +38,11 @@
   "addTheOptionToGetDonations": "Add the option to get donations",
   "contributionDescription": "Contribution description",
   "profilePhoto": "Profile photo",
-  "backgroundPhoto": "Background photo"
+  "backgroundPhoto": "Background photo",
+  "register": "Register",
+  "logIn": "Log in",
+  "email": "Email",
+  "password": "Password",
+  "back": "Back",
+  "next": "Next"
 }

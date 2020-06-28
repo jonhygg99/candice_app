@@ -2,7 +2,8 @@ import 'package:candice/constants/colors.dart';
 import 'package:candice/constants/enum.dart';
 import 'package:candice/constants/measures.dart';
 import 'package:candice/constants/typography.dart';
-import 'package:candice/screens/login_registration/register/index.dart';
+import 'package:candice/models/app_localizations.dart';
+import 'package:candice/screens/login_registration/registrationProcess.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
@@ -62,7 +63,6 @@ class _AppRegistrationState extends State<AppRegistration> {
                     if (_controller.value.isPlaying) {
                       _controller.pause();
                     } else {
-                      // If the video is paused, play it.
                       _controller.play();
                     }
                   }),
@@ -83,9 +83,9 @@ class _AppRegistrationState extends State<AppRegistration> {
             children: <Widget>[
               RaisedButton(
                 child: Text(
-                  'Register',
+                  AppLocalizations.of(context).translate('register'),
                   style: kMediumWhiteBoldText,
-                ), // TODO: language
+                ),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -106,7 +106,8 @@ class _AppRegistrationState extends State<AppRegistration> {
               ),
               const SizedBox(height: kSmallSeparation),
               FlatButton(
-                child: Text('Log in', style: kMediumWhiteBoldText),
+                child: Text(AppLocalizations.of(context).translate('logIn'),
+                    style: kMediumWhiteBoldText),
                 onPressed: () {
                   Navigator.push(
                     context,

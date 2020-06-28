@@ -13,12 +13,10 @@ import 'textFormFieldRegistration.dart';
 class RegistrationProcess extends StatefulWidget {
   RegistrationProcess({
     @required this.registrationProcess,
-    @required this.registrationMap,
     this.action,
     this.isLogIn = false,
   });
   RegistrationProcessType registrationProcess;
-  final Map<RegistrationProcessType, String> registrationMap;
   final Function action;
   final bool isLogIn;
 
@@ -28,6 +26,11 @@ class RegistrationProcess extends StatefulWidget {
 
 class _RegistrationProcessState extends State<RegistrationProcess> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  Map<RegistrationProcessType, String> _registrationMap = {
+    RegistrationProcessType.Email: '',
+    RegistrationProcessType.Username: '',
+    RegistrationProcessType.Password: ''
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +85,7 @@ class _RegistrationProcessState extends State<RegistrationProcess> {
                           const SizedBox(height: kCommonSeparation),
                           TextFormFieldRegistration(
                             registrationProcess: widget.registrationProcess,
-                            registrationMap: widget.registrationMap,
+                            registrationMap: _registrationMap,
                           ),
                           widget.isLogIn
                               ? const SizedBox(height: kCommonSeparation)
@@ -100,7 +103,7 @@ class _RegistrationProcessState extends State<RegistrationProcess> {
                               ? TextFormFieldRegistration(
                                   registrationProcess:
                                       RegistrationProcessType.Password,
-                                  registrationMap: widget.registrationMap,
+                                  registrationMap: _registrationMap,
                                 )
                               : Container(),
                         ],
@@ -118,7 +121,7 @@ class _RegistrationProcessState extends State<RegistrationProcess> {
                           RegistrationButton(
                             registrationProcess:
                                 RegistrationProcessType.Password,
-                            registrationMap: widget.registrationMap,
+                            registrationMap: _registrationMap,
                             action: widget.action,
                             text:
                                 AppLocalizations.of(context).translate('logIn'),
@@ -130,7 +133,7 @@ class _RegistrationProcessState extends State<RegistrationProcess> {
                         children: <Widget>[
                           RegistrationButton(
                             registrationProcess: widget.registrationProcess,
-                            registrationMap: widget.registrationMap,
+                            registrationMap: _registrationMap,
                             action: widget.action,
                             changeProcess: (RegistrationProcessType type) =>
                                 setState(
@@ -142,7 +145,7 @@ class _RegistrationProcessState extends State<RegistrationProcess> {
                           SizedBox(width: kCommonSeparation),
                           RegistrationButton(
                             registrationProcess: widget.registrationProcess,
-                            registrationMap: widget.registrationMap,
+                            registrationMap: _registrationMap,
                             action: widget.action,
                             changeProcess: (RegistrationProcessType type) =>
                                 setState(
@@ -172,10 +175,10 @@ class _RegistrationProcessState extends State<RegistrationProcess> {
 
   String getText() {
     if (widget.registrationProcess == RegistrationProcessType.Email)
-      return 'Email'; // TODO: translation
+      return AppLocalizations.of(context).translate('email');
     else if (widget.registrationProcess == RegistrationProcessType.Username)
-      return 'Username'; // TODO: translation
+      return AppLocalizations.of(context).translate('username');
     else
-      return 'Password'; // TODO: translation
+      return AppLocalizations.of(context).translate('password');
   }
 }

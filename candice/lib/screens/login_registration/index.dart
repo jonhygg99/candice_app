@@ -17,11 +17,6 @@ class AppRegistration extends StatefulWidget {
 
 class _AppRegistrationState extends State<AppRegistration> {
   VideoPlayerController _controller;
-  Map<RegistrationProcessType, String> registrationMap = {
-    RegistrationProcessType.Email: '',
-    RegistrationProcessType.Username: '',
-    RegistrationProcessType.Password: ''
-  };
   Future<void> _initializeVideoPlayerFuture;
 
   @override
@@ -92,7 +87,6 @@ class _AppRegistrationState extends State<AppRegistration> {
                     MaterialPageRoute(
                       builder: (context) => RegistrationProcess(
                         registrationProcess: RegistrationProcessType.Email,
-                        registrationMap: registrationMap,
                         action: widget.action,
                       ),
                     ),
@@ -114,7 +108,6 @@ class _AppRegistrationState extends State<AppRegistration> {
                     MaterialPageRoute(
                       builder: (context) => RegistrationProcess(
                         registrationProcess: RegistrationProcessType.Email,
-                        registrationMap: registrationMap,
                         action: widget.action,
                         isLogIn: true,
                       ),

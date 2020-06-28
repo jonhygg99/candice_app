@@ -35,9 +35,12 @@ class RegistrationButton extends StatelessWidget {
               else
                 changeProcess(getBackProcess());
             } else {
-              if (registrationProcess == RegistrationProcessType.Password)
+              if (registrationProcess == RegistrationProcessType.Password) {
+                print(registrationMap[RegistrationProcessType.Email]);
+                print(registrationMap[RegistrationProcessType.Username]);
+                print(registrationMap[RegistrationProcessType.Password]);
                 action();
-              else {
+              } else {
                 changeProcess(getNextProcess());
               }
             }

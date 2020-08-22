@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>490390508461-npuc6jh54rkr62r6tc87p4msrrnj5vsu.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.490390508461-npuc6jh54rkr62r6tc87p4msrrnj5vsu</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBRN-U8i35rBQvY3Fu9_gzQe86-iq-k9zc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>490390508461</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.candicemusic.candice</string>
+	<key>PROJECT_ID</key>
+	<string>candice-772a4</string>
+	<key>STORAGE_BUCKET</key>
+	<string>candice-772a4.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:490390508461:ios:88c497f0160e8b6bcd0724</string>
+	<key>DATABASE_URL</key>
+	<string>https://candice-772a4.firebaseio.com</string>
+</dict>
+</plist>
